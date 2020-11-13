@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 内置对象
+    * 实例对象：需要通过new创建对象后方可调用的属性或方法
+    * 静态对象：不需通过new创建对象，直接调用属性或方法
+    * Math
+    */
+
+    // 静态属性
+    var π = Math.PI,
+        e = Math.E;
+
+    // 静态方法
+    var pos_val = Math.abs(-1),
+        rand = Math.random() * 10 + 5,
+        max = Math.max(5,2,9,18,73,3),
+        min = Math.min(5,2,9,18,73,3),
+        pow = Math.pow(2,2),
+        sqrt = Math.sqrt(9);
+    
+    console.log(
+      π,
+      e,
+      pos_val,
+      rand,
+      max,
+      min,
+      pow,
+      sqrt
+    );
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 浅拷贝和深拷贝
+        */
+
+        var cType = {
+            // 浅拷贝
+            shallow_copy:function(o){
+                var n = {};
+
+                for(var i in o){
+                    n[i] = o[i];
+                }
+
+                return n;
+            },
+            // 深拷贝
+            deep_copy:function(o,n){
+                for(var i in o){
+                    var item = o[i];
+                    if(item instanceof Object){
+                        n[i] = {};
+                        this.deep_copy(item,n[i]);
+                    }else if(item instanceof Array){
+                        n[i] = [];
+                        this.deep_copy(item,n[i]);
+                    }else{
+                        n[i] = item;
+                    }
+                }
+            }
+        };
+
+        var o = {
+            name:'张三',
+            age:18,
+            sex:'男',
+            sayHi:function(){
+                console.log('hi')
+            },
+            hobbies:[1,2,3],
+            son:{
+                name:'小张三',
+                age:6,
+                sex:'男',
+                say:function(){
+                    console.log('爸爸')
+                }
+            }
+        };
+
+        // 浅拷贝
+        var n1 = cType.shallow_copy(o);
+        var n2 = {};
+        cType.deep_copy(o,n2);
+
+        o.hobbies[0] = 4;
+        o.son.name = '小李四';
+
+        console.log(
+            o,
+            n1,
+            n2
+        );
+    </script>
+</body>
+</html>

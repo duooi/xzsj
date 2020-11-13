@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 作用域及作用域链
+    */
+
+    var name = '123';
+
+    function func1(){
+      var name = '456';
+      function func2(){
+        var name = '789';
+        function func3(){
+          var name = '里层';
+          console.log(name);    // name会随着作用域链逐级向上查找
+        }
+        func3();
+      }
+      func2();
+    }
+    func1();
+  </script>
+</body>
+</html>

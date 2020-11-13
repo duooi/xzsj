@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 创建对象
+        * 系统构造函数，自定义构造函数，字面量
+        * 检测引用类型：使用constructor和instanceof
+        */
+
+        function Person(){}
+
+        // 创建对象的三种方式
+        var createObj = {
+            // 系统构造函数
+            create_sys:function(name,age){
+                // 使用系统构造函数Object
+                var person = new Object();
+                
+                person.name = name;
+                person.age = 28;
+                
+                return person;
+            },
+            // 自定义构造函数
+            create_def:function(name,age){
+                var person = new Person();
+
+                person.name = name;
+                person.age = age;
+
+                return person;
+            },
+            // 字面量
+            create_dir:function(name,age){
+                // 返回字面量对象
+                return {
+                    name,
+                    age
+                };
+            } 
+        };
+
+        var obj1 = createObj.create_sys('张三',28),
+            obj2 = createObj.create_def('李四',20),
+            obj3 = createObj.create_dir('王五',12);
+
+        // 输出结果
+        console.log(
+            obj1,
+            obj2,
+            obj3,
+            // 检测变量类型
+            obj1 instanceof Person,
+            obj2 instanceof Person,
+            obj3 instanceof Person,
+            obj1.constructor == Object,     // 如果手动修改prototype会导致结果检测不准
+            obj2.constructor == Person
+        );
+
+        
+    </script>
+</body>
+</html>

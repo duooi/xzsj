@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 值类型和引用类型的数据传递
+    * 值类型传递的是值
+    * 引用类型传递的是引用（地址）
+    */
+
+    // 值类型
+    var num = 10;
+    function update(num){
+      num = 20;
+    }
+    update(num);
+    console.log(num);
+
+    // 引用类型
+    var obj = {
+      name:'obj'
+    }
+    function updateObj(o){
+      o.name = 'updateObj'
+      o = {
+        name:'innerObj'
+      }
+    }
+    updateObj(obj);
+
+    console.log(obj);
+
+  </script>
+</body>
+</html>

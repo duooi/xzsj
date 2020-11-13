@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 运算符
+        * 1.算术运算符
+        *   一目/二目/三目
+        * 2.复合运算符
+        *   += -= *= /= %=
+        * 3.关系运算符
+        *   > < = >= <= == === != !==
+        * 4.
+        */
+        
+        var num1 = -11;
+        var num2 = num1 ++;
+
+        var num3 = 1 + 12;
+        var num4 = 20 % 3;
+
+        var num5 = 20 > 5 ? 15 : 3;
+
+        var num6 = 10;
+        num6 += 5;
+
+        var num7 = 20;
+        num7 %= 3;
+
+        var num8 = 30;
+        console.log(num8 >= 20);
+
+        var num9 = 20;
+        console.log(num9 == 20);
+
+        console.log(1 && 0);
+        console.log(10 || 1);
+
+        // 由于第一个表达式为true，所以第二个表达式也会执行
+        10 > 1 && (num9 = 40);
+
+        console.log(num9);
+
+        
+
+
+    </script>
+</body>
+</html>

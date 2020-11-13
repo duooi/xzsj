@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 循环练习
+     */
+
+    // 求6的阶乘
+    var count = 1;
+    var final = 1;
+
+    while(count<=6){
+      final *= count;
+      count ++;
+    }
+    console.log(final);
+
+    // 求1-100之间所有偶数的和
+    count = 2;
+    final = 0;
+    do{
+      final += count;
+      count += 2;
+    }while(count <= 100)
+    console.log(final);
+
+    // 求1-100之间所有奇数的和
+    count = 1;
+    final = 0;
+    do{
+      final += count;
+      count += 2;
+    }while(count <= 100)
+    console.log(final);
+
+    // 输出1-100之间所有被7整除的数字
+    var res = [];
+    count = 1;
+    while(count <= 100){
+      count % 7 == 0 && res.push(count);
+      count ++;
+    }
+    console.log(res);
+
+    // 求账号和密码是否一致，登录的效果实现
+    var usr = 'admin',
+        pass = '123';
+
+    var usr_input = prompt('请输入用户账号:');
+    while(usr_input !== usr){
+      usr_input = prompt('请输入用户账号:');
+    }
+    var pass_input = prompt('请输入用户密码:');
+    while(pass_input !== pass){
+      pass_input = prompt('请输入用户密码:');
+    }
+    console.log('correct! logining...');
+
+
+  </script>
+</body>
+</html>

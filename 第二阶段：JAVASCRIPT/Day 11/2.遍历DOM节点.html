@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p><span></span><span></span></p>
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <form action="">
+        <input type="text"><input type="text">
+        <button></button>
+    </form>
+    <script>
+        // 存储DOM节点
+        var nodes = [];
+        
+        // 获取节点名称
+        function getTagName(node){
+            return node && node.nodeName;
+        }
+
+        // 获取所有子节点
+        function getDomNodes(root){
+            // 获取当前节点名称
+            nodes.push(getTagName(root));
+
+            // 获取该节点下的所有子节点
+            var children = root.children;
+
+            // 遍历子节点
+            for(var i=0;i<children.length;i++){
+                // 如果该节点下还有子节点则递归遍历
+                children[i].children && getDomNodes(children[i]);
+            }
+        }
+
+        getDomNodes(document.documentElement);
+
+        console.log(nodes);
+    </script>
+</body>
+</html>

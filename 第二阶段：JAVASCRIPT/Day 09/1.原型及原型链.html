@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 原型及原型链
+        * 构造函数、prototype对象、实例对象
+        * 原型链：
+        */
+
+        // 构造函数
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        // prototype对象
+        Person.prototype.sayHi = function(){
+            console.log('hi');
+        }
+
+        //prototype对象可以改变
+        Person.prototype = {
+            constructor:Person
+        }
+
+        // 实例对象
+        var p = new Person('张三',18);
+
+        console.log(
+            p.__proto__ == Person.prototype,             // 实例对象的__proto__属性指向构造函数的原型对象
+            Person.prototype.constructor == Person,      // prototype对象的constructor属性指向构造函数
+            p.__proto__
+        );
+
+
+        // --------原型链----------
+
+        // 工具类
+        function Utils(name){
+            this.name = '工具类';
+        }
+
+        // 刀具类
+        function Knifes(name){
+            // this.name = '刀具';
+        }
+
+        Knifes.prototype.sayName = function(){
+            console.log('刀具---原型');
+        }
+
+        // 小刀
+        function LittleKnifes(name){
+            // this.name = '小刀';
+        }
+
+        // prototype继承
+        Knifes.prototype = new Utils();
+        LittleKnifes.prototype = new Knifes();
+
+        // LittleKnifes.prototype.name = '小刀---原型';
+
+        var lk = new LittleKnifes();
+
+        console.log(
+            lk.__proto__,
+            lk.name             //访问name时LittleKnifes上的name属性会覆盖prototype上的name属性
+        );
+    </script>
+</body>
+</html>

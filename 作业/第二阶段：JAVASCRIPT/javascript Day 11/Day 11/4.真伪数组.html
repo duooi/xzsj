@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 真伪数组
+    */
+
+    var arr = [1,2,3,4];
+
+    var obj = {
+      0:1,
+      1:2,
+      2:3,
+      3:4
+    };
+
+    arr[4] = 5;   // 真数组长度可动态变化
+    obj[4] = 5;   // 伪数组长度不可变化
+
+    console.log(
+      arr.length, 
+      obj.length  // 伪数组访问不到length
+    )
+
+    function func(x,y){
+      console.log(arguments.length);
+      arguments.forEach(()=>{})   // 伪数组不可迭代
+    }
+
+    arr.forEach(function(){
+
+    });
+
+    func(1,2,3,4);
+  </script>
+</body>
+</html>

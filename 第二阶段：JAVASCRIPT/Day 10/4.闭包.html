@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li{
+      list-style: none;
+      margin:5px 0;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><button>点赞+1</button></li>
+    <li><button>点赞+1</button></li>
+    <li><button>点赞+1</button></li>
+    <li><button>点赞+1</button></li>
+    <li><button>点赞+1</button></li>
+  </ul>
+  <script>
+    /**
+    * 闭包
+    */
+
+    function closure1(){
+      var name = 'closure';
+      return function(){
+        console.log(name);
+      }
+    }
+
+    var f = closure1();
+    f();
+    f();
+    f();
+
+    function closure2(){
+      var num = 1;
+      return function(){
+        num ++;
+        console.log(num);
+      }
+    }
+
+    var cr = closure2();
+
+    cr();   // 2
+    cr();   // 3
+    cr();   // 4
+
+
+    // 案例：产生几个相同的随机数
+    function createRandom1(){
+      var rand = Math.random() * 10 + 1;
+      return function(){
+        console.log(rand);
+      }
+    }
+
+    var cr1 = createRandom1();
+
+    cr1();
+    cr1();
+    cr1();
+
+  
+    // 案例：每次产生不同的随机数
+    function createRandom2(){
+      var rand = Math.random() * 10 + 1;
+      return function(){
+        rand = Math.random() * 10 + 1;
+        console.log(rand);
+      }
+    }
+
+    var cr2 = createRandom2();
+
+    cr2();
+    cr2();
+    cr2();  
+    
+    // 案例：点赞
+    function favor(){
+      var num = 1;
+      return function(){
+        num ++;
+        this.innerHTML = '点赞+' + num;
+      }
+    }
+
+    var btns = document.getElementsByTagName('button');
+
+    for(var i=0;i<btns.length;i++){
+      btns[i].onclick = favor();
+    }
+  </script>
+</body>
+</html>

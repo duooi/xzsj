@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 作用域和作用域链
+        * 作用域分全局作用域、函数作用域以及块作用域
+        */
+
+        // 全局变量
+        var num1 = 10;  //会挂载到window对象上
+            num2 = 20;  
+            
+        console.log(window);
+
+        delete num1;
+        delete num2;
+
+        function func(){
+            // 局部变量
+            var name = "func";
+        }
+
+        // console.log(name);  //name访问不到
+
+        // 块作用域，结合const和let使用
+        {
+            let x1 = 1;
+            let x2 = 2;
+        }
+        
+        // console.log(x1,x2);     //x1,x2访问不到
+
+    </script>
+    <script>
+        // 作用域链
+        var num = 10;
+        function func1(){
+            var num = 20;
+            function func2(){
+                var num = 30;
+                console.log(num);
+            }
+        }
+    </script>
+</body>
+</html>

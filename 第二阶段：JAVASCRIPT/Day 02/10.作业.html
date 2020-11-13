@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 作业1：本金10000元，存入银行，年利率千分之三，每过一年，将本金和利息相加作为新的本金。
+    // 计算5年后，获得的本金是多少
+    var orginMoney = 10000,   //一开始的本金10000元
+        years = 5,            //存储年数
+        rate = 0.003,         //年利率
+        interest = 0;         //利息
+
+    for(var i=1;i<=years;i++){
+      interest = orginMoney * rate;    //由本金算出利息
+      orginMoney += interest;          //本息和作为下一年的本金
+    }
+    console.log(orginMoney.toFixed(2));
+
+
+    // 作业2：兔子繁殖问题
+    function Fib(n){
+      if(n == 1 || n == 2){
+        return 1;
+      }
+      return Fib(n-2) + Fib(n-1);
+    }
+
+    console.log(Fib(12));
+  </script>
+</body>
+</html>

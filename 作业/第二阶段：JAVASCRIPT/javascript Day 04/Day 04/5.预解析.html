@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 预解析
+        * 将变量声明与函数声明提升
+        */
+
+        console.log(num,fn);
+        var num = 10;
+        function fn(){
+            console.log('fn')
+        }
+
+        f1();
+        console.log(
+            c,
+            b,
+            a
+        );
+        function f1(){
+            var a = b = c = 9;
+            console.log(a,b,c);
+        }
+    </script>
+</body>
+</html>

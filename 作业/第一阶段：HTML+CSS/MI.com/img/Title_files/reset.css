@@ -1,0 +1,16 @@
+html,body,div,h1,h2,h3,h4,h5,p,ul,li,a,dl,dt,dd{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+img{
+    width:100%;
+}

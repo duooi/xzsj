@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * apply/call/bind
+        * 共同点：改变方法或函数中的this指向
+        * 不同点：apply和call除了绑定对象外，传入的参数形式不同，apply是以数组形式传入，而call则是以单个形式
+                bind绑定对象后返回的是函数，如果要调用，则需要跟上()
+        */
+
+        console.log('====== apply ======');
+        function func1(x,y){
+            console.log(this);
+            console.log(x + y)
+        }
+
+        var obj = {};
+
+        func1();               // window
+        func1.apply();         // window
+        func1.apply(obj);      // obj
+        func1.apply(obj,[1,2]);  // obj,3 
+
+        console.log('====== call ======');
+        function func1(x,y){
+            console.log(this);
+            console.log(x + y)
+        }
+
+        var obj = {};
+
+        func1();               // window
+        func1.call();         // window
+        func1.call(obj);      // obj
+        func1.call(obj,4,5);  // obj,9
+
+        console.log('====== bind ======');
+
+        var obj = {};
+
+        func1();                            // window
+        console.log(func1.bind()());          // window
+        console.log(func1.bind(obj)());       // obj
+        console.log(func1.bind(obj,4,5)());   // obj,9
+
+        console.log(func1.prototype);
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  //主菜单栏商品数据
+  "nav_menu": [
+    "phone":[],
+    "redmi":[],
+    "tv":[],
+    "notebook":[],
+    "elet":[],
+    "wifi":[],
+  ]
+}

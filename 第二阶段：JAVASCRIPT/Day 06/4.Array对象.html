@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * Array对象
+    * 创建变量：字面量和构造函数
+    */
+
+    var arr1 = [1,2,3,4,5,6],
+        arr2 = new Array(4,5,6);
+
+    console.log(
+      arr1.length,                                  // 获取数组长度          
+      Array.isArray(arr1),                          // 判断是否为数组类型
+      arr1.concat([7,8,9]),                         // 数组拼接
+      arr1.push(7),                                 // 在数组末尾添加元素
+      arr1.pop(),                                   // 在数组末尾删除元素
+      arr1.shift(),                                 // 在数组前面删除元素
+      arr1.unshift(0),                              // 在数组前面添加元素
+      arr1.every(function(item,index,arr){          // 遍历数组，只有每一项都符合条件才会返回true，否则为false
+        return item < 10;
+      }),
+      arr1.filter(function(item,index,arr){         // 过滤数组，满足条件的元素才会返回
+        return item > 3;
+      }),
+      arr1.forEach(function(item,index,arr){        // 遍历数组
+        console.log(item);
+      }),
+      arr1.indexOf(2),                              // 获取元素索引
+      arr1.join(','),                               // 按照指定分隔符拼接数组为字符串
+      arr1.map(function(item,index,arr){            // 对数组每一项进行处理加工
+        return item * 2;
+      }),
+      arr1.reverse(),                               // 数组反转
+      arr1.sort(function(a,b){                      // 数组排序
+        return b - a;
+      }),
+      arr1.slice(2,-1),                             // 切割字符串
+      arr1.splice(1,1)                              // 删除字符串
+    );
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 练习：求100以内所有3的倍数的和
+    var final = 0,
+        count = 3;
+
+    do{
+      count % 3 == 0 && (final += count);
+      count ++;
+    }while(count <= 100)
+    console.log(final);
+  </script>
+</body>
+</html>

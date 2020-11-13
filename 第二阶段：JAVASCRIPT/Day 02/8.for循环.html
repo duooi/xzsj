@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * for循环
+     */
+
+    // 练习：打印10次，哈哈，我又变帅了
+    for(var i=0;i<10;i++){
+      console.log("哈哈，我又变帅了");
+    }
+
+    var j=0;
+    for(;j<5;){
+      console.log(j);
+      j++;
+    }
+
+    // 练习：画星星,控制星星排布
+    var rows = 5, //控制行数
+        cols = 6; //控制一列显示几个
+    
+    for (var i=0;i<rows;i++){
+      for(var j=0;j<cols;j++){
+        document.write('☆');
+      }
+      document.write('<br/>');
+    }
+
+    document.write('<br/>');
+
+    for (var i=1;i<=rows;i++){
+      for(var j=0;j<i;j++){
+        document.write('☆');
+      }
+      document.write('<br/>');
+    }
+
+    document.write('<br/>');
+
+
+    // 练习：乘法口诀表，带表格
+    var htmlStr = "";
+    for(var i=1;i<=9;i++){
+      if(i == 1) htmlStr += "<table border='1'><caption>乘法口诀表</caption><tr>";
+      else htmlStr += "<tr>";
+      for(var j=1;j<=i;j++){
+        htmlStr += ("<td>" + i + "*" + j + "=" + i * j + "</td>");
+      }
+      if(i == 9) htmlStr += "</tr></table>";
+      else htmlStr += "</tr>";
+    }
+
+    document.write(htmlStr);
+
+    
+
+    
+
+    
+  </script>
+</body>
+</html>

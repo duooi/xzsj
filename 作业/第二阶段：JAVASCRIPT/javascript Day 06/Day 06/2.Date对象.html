@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * Date对象
+        * 
+        */
+
+        // 初体验
+        var date = new Date();
+
+        // 获取时间的各个部分
+        var part_of_date = {
+            year:date.getFullYear(),
+            month:date.getMonth() + 1,  //真实月份需+1
+            day:date.getDate(),
+            hours:date.getHours(),
+            minutes:date.getMinutes(),
+            seconds:date.getSeconds(),
+            week:date.getDay()  //0为星期日
+        };
+
+        // 方法上的地区差异
+        var diff_date = {
+            time:date.toTimeString(),
+            time_loc:date.toLocaleTimeString(),     //本地格式
+            dat:date.toDateString(),
+            dat_loc:date.toLocaleDateString()       //本地格式
+        }
+
+        console.log(
+            date,
+            part_of_date,
+            diff_date,
+            dateFormat(date)
+        );
+
+        // 格式化日期
+        function dateFormat(date){
+            var weekStr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+                year = date.getFullYear(),
+                month = date.getMonth() + 1,
+                day = date.getDate(),
+                hour = date.getHours(),
+                minute = date.getMinutes(),
+                second = date.getSeconds(),
+                week = weekStr[date.getDay()];
+            
+            hour < 10 && (hour = '0' + hour);
+            minute < 10 && (minute = '0' + minute);
+            second < 10 && (second = '0' + second);
+
+            return year + "/" + month + "/" + day + " " + week + " " + hour + ":" + minute +
+                   ":" + second;
+        }
+
+        // 实时更新日期
+        var timer = setInterval(function(){
+            var date = dateFormat(new Date());
+            document.body.innerText = date;
+        },1000);
+    </script>
+</body>
+</html>

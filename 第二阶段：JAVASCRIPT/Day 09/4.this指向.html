@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * this指向
+        */
+
+        // 普通函数
+        function func1(){
+            console.log(this);
+        }
+
+        func1();
+
+        // 构造函数
+        function Func2(){
+            console.log(this);
+        }
+
+        var func2 = new Func2();
+
+        // 对象方法
+        var obj = {
+            func3:function(){
+                console.log(this);
+            }
+        };
+
+        obj.func3();
+
+        var f = obj.func3;
+
+        f();
+
+        // 定时器函数
+        setTimeout(function(){
+            console.log(this);
+        },1000);
+
+        // 原型方法
+        Func2.prototype.func4 = function(){
+            console.log(this);
+        };
+
+        func2.func4();
+    </script>
+</body>
+</html>

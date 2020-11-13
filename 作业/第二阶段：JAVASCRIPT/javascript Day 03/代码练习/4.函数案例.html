@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 函数案例
+     */
+
+    // 求1-n之间所有数的和
+    function sum(n){
+      return (1 + n) * n / 2;
+    }
+    console.log(sum(100));
+
+    // 求n-m之间所有数的和
+    function getSumFrom(n,m){
+      return (n + m) * (m - n + 1) / 2;
+    }
+    console.log(getSumFrom(1,5));
+
+    // 求圆的面积
+    function getArea(r){
+      return Math.PI * r * r;
+    }
+    console.log(getArea(2));
+
+    // 求2个数中的最大值
+    function getMax(){
+      var max = arguments[0];
+      for(var i=1;i<arguments.length;i++){
+        if(max < arguments[i]){
+          max = arguments[i]
+        }
+      }
+      return max;
+    }
+    console.log(getMax(2,5));   //两个数中的最大值
+    console.log(getMax(2,8,5));    //三个数中的最大值
+
+    // 判断一个数是不是素数
+    function isPrime(n){
+      if(n == 1 || n == 2) return false;
+      for(var i=2;i<n/2;i++){
+        if(n % i == 0){
+          return false;
+        }
+      }
+      return true;
+    }
+    console.log(isPrime(2));
+
+
+  </script>
+</body>
+</html>

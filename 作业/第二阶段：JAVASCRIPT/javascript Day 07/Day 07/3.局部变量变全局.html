@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #map{
+            width:400px;
+            height:400px;
+            background-color: #ccc;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        
+        (function(win){
+            
+            var num = 10,                          // 局部变量变全局
+                Random = function(min,max){        // 自调用函数抛出产生随机数方法
+                    this.random = parseInt(Math.random() * (max-min) + min); 
+                };             
+            
+            window.num = num;
+            window.Random = Random;
+
+        })(window);
+
+        console.log(
+            num,
+            new Random().random
+        );
+
+        /**
+        * 随机创建小方块
+        */
+
+        // 生成block构造函数
+        function Block(width,height,bgc,map){
+            this.width = width;
+            this.height = height;
+            this.bgc = bgc;
+            this.x = new Random(map.offsetLeft,map.offsetWidth / width).random * width;
+            console.log(map.offsetTop)
+            this.y = new Random(map.offsetTop,map.offsetHeight / height).random * height;
+            this.map = map;
+        }
+
+        // 初始化block
+        Block.prototype.init = function(){
+            var block = document.createElement('div');
+
+            block.style.width = this.width + 'px';
+            block.style.height = this.height + 'px';
+            block.style.backgroundColor = this.bgc;
+            block.style.position = 'absolute';
+            block.style.left = this.x + 'px';
+            block.style.top = this.y + 'px';
+
+            this.render(block);
+        };
+
+        // 渲染block
+        Block.prototype.render = function(block){
+            this.map.appendChild(block);
+        };
+
+        var block = new Block(20,20,'green',document.getElementById('map'));
+
+        block.init();
+
+    </script>
+</body>
+</html>

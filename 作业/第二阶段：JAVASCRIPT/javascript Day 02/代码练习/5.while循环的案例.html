@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 练习：计算1-100之间的所有数字的和
+     */
+
+    var res = 0;  //存储结果
+    var count = 1;  //计数器
+    //while
+    while(count <= 100){
+      res += count;
+      count ++;
+    }
+    console.log(res);
+
+    // do-while
+    count = 1;
+    res = 0;
+
+    do{
+      res += count;
+      count ++;
+    }while(count <= 100)
+    console.log(res);
+
+    // 扩展方法:for循环
+    var sum = 0;
+    for(var i=1;i<=100;i++){
+      sum += i;
+    }
+    console.log(sum);
+
+    // 扩展方法：直接用公式
+    sum = 0;
+    sum = (1 + 100) * 100 / 2;
+    console.log(sum);
+
+    
+
+
+
+  </script>
+</body>
+</html>

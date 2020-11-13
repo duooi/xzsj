@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        * 实现Mat对象的案例练习
+        */
+
+        function Mat(){}
+
+        // 添加自定义方法
+        // 获取最大值
+        Mat.prototype.max = function(){
+            var max = arguments[0];
+            // for-of适用于iterator，但是有一定兼容性问题
+            for(var i of arguments){
+                if(max < i){
+                    max = i;
+                }
+            }
+            return max;
+        }
+
+        // 随机产生一个十六进制颜色值的随机数
+        Mat.prototype.randomColor = function(){
+            var color_str = '#';
+            //存储每一位颜色属性值
+            var color_bits = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+            for(var i=0;i<6;i++){
+                // 拼接颜色值
+                color_str += color_bits[Math.floor(Math.random() * 16)];
+            }
+            return color_str;
+        }
+
+
+        var mt = new Mat();
+
+        // 调用方法
+        console.log(
+            mt.max(1,5,8,10,25,73,21),
+            mt.randomColor()
+        );
+    </script>
+</body>
+</html>

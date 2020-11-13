@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 面向对象思想
+    * 对象：有属性和方法，具体特指某个个体
+    * 创建对象的方法：借用系统构造函数、自定义构造函数、对象字面量
+    */
+
+    //借用系统构造函数Object：每创建一个对象，必须重复编写以下代码
+    var person = new Object();
+    // 添加属性和方法
+    person.name = '张三';
+    person.sayHi = function(){
+      console.log('你好');
+    };
+
+    var dog = new Object();
+    // 添加属性和方法
+    dog.name = '大黄';
+    dog.sayHi = function(){
+      console.log('汪汪');
+    };
+    
+    // 工厂模式：解决了代码复用的问题，但创建出来的对象还是识别不出类型
+    function createObj(name,age){
+      var obj = new Object();
+      obj.name = name;
+      obj.age = age;
+      obj.sayHi = function(){
+        console.log('你好')
+      }
+
+      return obj;
+    }
+
+    var person = createObj('张三',28);
+    var dog = createObj('大黄',3);
+
+    console.log(
+      person instanceof Object,
+      dog instanceof Object
+    );
+
+    // 自定义构造函数:解决了对象识别类型的问题，但是方法得不到复用
+    function Dog(name,age,color,weight){
+      this.name = name;
+      this.age = age;
+      this.color = color;
+      this.weight = weight;
+      this.walk = function(){
+        console.log('走路很慢')
+      };
+      this.eat = function(){
+        console.log('喜欢吃大骨头');
+      };
+    }
+
+    var dog1 = new Dog('大黄',3,'yellow',250);
+    // console.log(dog instanceof Dog);
+    var dog2 = new Dog('小黄',1,'black',100);
+    console.log(dog1.walk == dog2.walk);
+    
+
+    // 借用原型:解决了方法复用的问题
+    var Dog = function(name,age,color,weight){
+      this.name = name;
+      this.age = age;
+      this.color = color;
+      this.weight = weight;
+    }
+
+    Dog.prototype.walk = function(){
+      console.log('走路很慢')
+    };
+    Dog.prototype.eat = function(){
+      console.log('喜欢吃大骨头');
+    };
+
+    var dog1 = new Dog('大黄',3,'yellow',250);
+    // console.log(dog instanceof Dog);
+    var dog2 = new Dog('小黄',1,'black',100);
+    console.log(dog1.walk == dog2.walk);
+
+  </script>
+</body>
+</html>

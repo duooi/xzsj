@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * JSON：一种数据格式
+    * 键值对
+    * for-in循环遍历
+    * for-of循环遍历
+    */
+
+    var json = {
+      'name':'张三',
+      'age':28,
+      'sayHi':function(){
+        console.log("hi");
+      }
+    }
+
+    // for-in循环遍历：遍历json对象的key值
+    for(var i in json){
+      console.log(json[i]);
+    }
+  </script>
+</body>
+</html>

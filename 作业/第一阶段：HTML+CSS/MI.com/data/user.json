@@ -1,0 +1,26 @@
+{
+  "user": [
+    {
+      "username": "123",
+      "password": "123",
+      "shopcar": [
+        {
+          "item_src":"car_thumb.jpg",
+          "item_name":"Redmi",
+          "item_desc":"4GB+64GB 藕荷粉",
+          "item_price": 799,
+          "item_num": 1
+        },
+        {
+          "item_src":"car_thumb.jpg",
+          "item_name":"Redmi",
+          "item_desc":"4GB+64GB 藕荷粉",
+          "item_price": 799,
+          "item_num": 1
+        }
+      ]
+    },
+    {"username": "456","password": "456"},
+    {"username": "789","password": "789"}
+  ]
+}

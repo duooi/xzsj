@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * 函数的其他作用
+        * 1.函数的声明方式：命名函数和匿名函数
+        * 2.函数作为参数传入
+        * 3.函数作为返回值返回
+        */
+
+        function func1(){
+            console.log('func1...')
+        }
+
+        func1();
+        // func2();   //会报错
+
+        // 匿名函数没有提升机制
+        var func2 = function(){
+            console.log('func2...')
+        }
+
+        // 函数作为参数传入
+        function func3(fn){
+            fn();
+        }
+
+        // 函数作为返回值返回
+        function func4(){
+            return function(){}
+        }
+
+        // 闭包：有权访问另一个作用域变量的函数
+        function func4(){
+            var name = "123";
+            return function(value){
+                name = value;
+                console.log(name);
+            }
+        }
+        
+        // newFunc是闭包
+        var newFunc = func4();
+        newFunc('456');
+
+        
+
+
+    </script>
+</body>
+</html>

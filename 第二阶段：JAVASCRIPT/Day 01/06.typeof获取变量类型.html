@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * typeof检测变量类型
+     * 1.typeof只能检测基本类型以及function
+     * 2.js中的数据类型：
+     *   基本类型：Number,String,Boolean,Null,Undefined
+     *   引用类型：Function,Array,Object
+     * 2.instanceof可以检测引用类型
+     */
+
+    var person = {
+      age:18,
+      name:'张三',
+      married:false,
+      hobbies:null,
+      fruits:['banana','apple','watermelon'],
+      say(){
+        console.log("Hello,friend");
+      },
+      son:{
+        name:'小张三',
+        age:6
+      }
+    }
+
+    // typeof对Object、Null、Array返回Object 
+    console.log(typeof(person.age));
+    console.log(typeof(person.name));
+    console.log(typeof(person.married));
+    console.log(typeof(person.hobbies));
+    console.log(typeof(person.fruits));
+    console.log(typeof(person.say));
+    console.log(typeof(person.son));
+    console.log(typeof(person.wife));
+
+    // instanceof不能检测基本类型
+    console.log(
+      person.fruits instanceof Array,
+      person.son instanceof Object,
+      person.age instanceof String
+    );
+
+    // 如果手动更改构造函数原型，constructor不能检测数据类型
+    console.log(
+      person.age.constructor == Number,
+      person.name.constructor == String,
+      person.married.constructor == Boolean,
+      person.fruits.constructor == Array
+    );
+
+    function Fn(){}
+
+    Fn.prototype = new Array()
+
+    console.log(new Fn().constructor == Fn);
+
+
+    console.log(
+      Object.prototype.toString.call(person.age),
+      Object.prototype.toString.call(person.name),
+      Object.prototype.toString.call(person.married),
+      Object.prototype.toString.call(person.hobbies),
+      Object.prototype.toString.call(person.fruits)
+    );
+
+    function Fn(){}
+
+    Fn.prototype = new Array()
+
+    console.log(Object.prototype.toString.call(Fn))
+    
+
+    
+
+
+    //console.log(String.toString.apply(person.hobbies.prototype));
+    //console.log(String.toString.call(person.fruits.prototype));
+    //console.log(String.toString.call(person.son.prototype));
+
+  </script>
+</body>
+</html>

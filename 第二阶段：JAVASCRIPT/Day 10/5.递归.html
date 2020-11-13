@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+    * 递归
+    */
+
+    // 练习：求 5 + 4 + 3 + 2 + 1
+    function factorial(n){
+      if(n == 1){
+        return 1;
+      }
+      return n + factorial(n - 1);
+    }
+
+    // 练习：求一个数的所有位数之和
+    function getSumOfBits(n){
+      if(n < 10){
+        return n;
+      }
+      return getSumOfBits(parseInt(n / 10)) + n % 10;
+    }
+
+    console.log(
+      factorial(5),    
+      factorial(10),
+      getSumOfBits(123),
+      getSumOfBits(456)
+    );
+  </script>
+</body>
+</html>
