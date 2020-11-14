@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #albem{
+      overflow: hidden;
+    }
+    #albem ul{
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" onclick="examples.disableInputAndChangeBgc()" value="禁用"/>
+  <input type="text" id="input1" value="请禁用我吧" />
+  <ul id="ul1">
+    <li>li1</li>
+    <li>li2</li>
+    <li>li3</li>
+  </ul>
+  <br>
+
+  <a href="http://www.baidu.com" onclick="return examples.preventDefault()">百度一下</a>
+  <br>
+
+  <a href="./OIP.jpeg" onclick="examples.showLargePic.bind(this)();return false"><img src="./OIP.jpeg" width="100" alt=""></a>
+  <img src="" alt="" id="img1">
+  <br>
+
+  <div id="albem">
+    <ul>
+      <li><a href="./1.jpg"><img src="1-small.jpg" alt="美女A"></a></li>
+      <li><a href="./2.jpg"><img src="2-small.jpg" alt="美女B"></a></li>
+      <li><a href="./3.jpg"><img src="3-small.jpg" alt="美女C"></a></li>
+      <li><a href="./4.jpg"><img src="4-small.jpg" alt="美女D"></a></li>
+    </ul>
+    <img src="./placeholder.png" id="area" alt="">
+    <span id="desc"></span>
+  </div>
+  <br>
+
+  <input type="button" id="btn1" value="隔行变色" onclick="examples.changeBgcByRows()"/>
+  <ul id="ul2">
+    <li>1.li</li>
+    <li>2.li</li>
+    <li>3.li</li>
+    <li>4.li</li>
+    <li>5.li</li>
+    <li>6.li</li>
+  </ul>
+  <br>
+
+  <ul id="ul3">
+    <li>1.li</li>
+    <li>2.li</li>
+    <li>3.li</li>
+    <li>4.li</li>
+    <li>5.li</li>
+    <li>6.li</li>
+  </ul>
+  <script>
+    /**
+    * DOM案例练习
+    */
+    function getById(id){
+      return typeof id == 'string' ? document.getElementById(id) : null;
+    }
+
+    var examples = {
+      // 禁用文本框和改变列表背景色
+      disableInputAndChangeBgc:function(){
+        getById('input1').disabled = true;
+        var lis = getById('ul1').getElementsByTagName('li')
+        for(var item in lis){
+          lis[item].style.backgroundColor = 'yellow';
+        }
+      },
+      // 阻止超链接默认跳转
+      preventDefault:function(){
+        return false;
+      },
+      // 点击小图显示大图
+      showLargePic:function(){
+        var img1 = getById('img1')
+        img1.src = this.href;
+      },
+      // 美女相册
+      albem:function(){
+        var imgs = getById('albem').getElementsByTagName('a'),
+            area = getById('area'),
+            desc = getById('desc')
+        for(var item in imgs){
+          imgs[item].onclick = function(){
+            area.src = this.href;
+            desc.innerText = this.alt;
+            return false;
+          }
+        }
+      },
+      // 列表隔行变色
+      changeBgcByRows:function(){
+        var lis = getById('ul2').getElementsByTagName('li')
+        for(var i=0;i<lis.length;i++){
+          lis[i].style.backgroundColor = i % 2 == 0 ? 'red' : 'yellow'
+        }
+      },
+      // 列表高亮显示
+      active:function(){
+        var lis = getById('ul3').getElementsByTagName('li')
+        for(var item of lis){
+          item.onmouseover = function(){
+            this.style.backgroundColor = 'red';
+          }
+          item.onmouseout = function(){
+            this.style.backgroundColor = '';
+          }
+        }
+      }
+    }
+
+    examples.albem();
+    examples.active();
+
+  </script>
+</body>
+</html>
