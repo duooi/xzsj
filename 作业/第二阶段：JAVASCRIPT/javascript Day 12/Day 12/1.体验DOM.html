@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dark{
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" id="btn1" value="alert">
+  <br>
+
+  <input type="button" id="btn2" value="setImg">
+  <img src="" alt="" id="img1"/>
+  <br>
+
+  <input type="button" id="btn3" value="updateP">
+  <p id="p1">我是一个P标签</p>
+  <br>
+  
+  <input type="button" id="btn4" value="updateA">
+  <a href="http://www.jiumosoushu.com" id="a1">鸠摩搜书</a>
+  <br>
+
+  <input type="button" id="btn5" value="updateAllP" />
+  <p class="p_same">p1</p>
+  <p class="p_same">p2</p>
+  <p class="p_same">p3</p>
+  <p class="p_same">p4</p>  
+  <br>
+
+  <input type="button" id="btn6" value="updateAltAndTitle">
+  <img src="./OIP.jpeg" id="img2" alt="鸭子" title="鸭子"/>
+  <br>
+
+  <input type="button" id="btn7" value="updateInput"/>
+  <input type="text" class="i_same" value="这是修改前的值">
+  <input type="text" class="i_same" value="这是修改前的值">
+  <input type="text" class="i_same" value="这是修改前的值">
+  <br>
+
+  <input type="image" class="b_image" src="OIP.jpeg" width="100px">
+  <input type="image" class="b_image" src="OIP.jpeg" width="100px">
+  <input type="image" class="b_image" src="OIP.jpeg" width="100px">
+  <br>
+
+  <input type="button" id="btn8" value="我是修改前的按钮"/>
+  <br>
+
+  <img src="./OIP.jpeg" alt="" id="img3">
+  <br>
+
+  <input type="button" class="i_pt" value="没选中">
+  <input type="button" class="i_pt" value="没选中">
+  <input type="button" class="i_pt" value="没选中">
+  <input type="button" class="i_pt" value="没选中">
+  <br>
+
+  <img src="./OIP.jpeg" alt="" id="img4"/>
+  <br>
+
+  <label for="">
+    <input type="button" value="性别" id="btn9" />
+    <input type="radio" name="sex" value="man" id="man"/>男
+    <input type="radio" name="sex" value="woman" id="woman">女
+  </label>
+  <br>
+
+  <button id="btn10">开/关灯</button>
+  <script>
+    /**
+    * 体验DOM
+    * 1.事件处理函数
+    * 2.
+    */
+
+    // 为方便通过id拿到对应元素，封装一个getById函数
+    function getById(id){
+      return typeof id == "string" ? document.getElementById(id) : null;
+    }
+
+    // 1.事件处理函数
+    (function(){
+      // 为按钮绑定点击事件
+      var btn1 = getById('btn1')
+      btn1.onclick = function(){
+        alert('alert')
+      }
+
+      // 显示图片及设置图片宽高
+      var btn2 = getById('btn2'),
+          img1 = getById('img1')
+      btn2.onclick = function(){
+        img1.src = './OIP.jpeg';
+        img1.style.width = '100px';
+      }
+
+      // 点击按钮，修改P标签的显示内容
+      var btn3 = getById('btn3'),
+          p = getById('p1')
+      btn3.onclick = function(){
+        p.innerText = '这是更新内容后的P标签'
+      }
+
+      // 点击按钮，修改a标签的地址和热点文字
+      var btn4 = getById('btn4'),
+          a1 = getById('a1')
+      btn4.onclick = function(){
+        a1.href = 'http://www.baidu.com',
+        a1.innerText = '百度一下'
+      }
+
+      // 点击按钮设置多个P标签的文字内容
+      var btn5 = getById('btn5'),
+          ps = document.getElementsByClassName('p_same')  //由于页面存在多个p，不方便通过tagName获取，所以改为通过className获取
+      btn5.onclick = function(){
+        for(var ele in ps){
+          ps[ele].innerText = '这是同步后的p标签'
+        }
+      }
+
+      // 点击按钮，修改图片的alt和title属性
+      var btn6 = getById('btn6'),
+          img2 = getById('img2')
+      btn6.onclick = function(){
+        img2.alt = '这是一只大鸭子';
+        img2.title = '这是一只大鸭子'
+      }
+
+      // 点击按钮，修改多个文本框的值
+      var btn7 = getById('btn7'),
+          inputs = document.getElementsByClassName('i_same')
+      btn7.onclick = function(){
+        for(var ele in inputs){
+          inputs[ele].value = '这是修改后的值'
+        }
+      }
+
+      // 点击每个图片弹出对话框
+      var b_images = document.getElementsByClassName('b_image')
+      for(var btn in b_images){
+        (function(btn){
+          b_images[btn].onclick = function(){
+            alert('这是第' + (+ btn + 1) + '只兔子按钮');
+          }
+        })(btn)
+      }
+
+      // 点击按钮，修改value属性
+      var btn8 = getById('btn8')
+      btn8.onclick = function(){
+        // console.log(this);
+        this.value = '我是修改后的按钮';
+      }
+
+      // 点击图片，修改自身宽和高
+      var img3 = getById('img3')
+      img3.onclick = function(){
+        this.style.width = '100px';
+      }
+
+      // 按钮的排他功能
+      var pts = document.getElementsByClassName('i_pt')
+      for(var pt of pts){
+        pt.onclick = function(){
+          for(var item of pts){
+            item.value = '没选中'
+          }
+          this.value = '选中了'
+        }
+      }
+
+      // 点击图片修改路径
+      var img4 = getById('img4')
+      img4.onclick = function(){
+        this.src = './OIP (1).jpeg';
+      }
+
+      // 点击按钮选择性别和兴趣
+      var btn9 = getById('btn9'),
+          sex = getById('woman')
+      btn9.onclick = function(){
+        sex.checked = true;
+      }
+
+      // 开关灯
+      var btn10 = getById('btn10'),
+          body = document.body
+      btn10.onclick = function(){
+        body.className = body.className == 'dark' ? '' : 'dark';
+      }
+    }())
+  </script>
+</body>
+</html>

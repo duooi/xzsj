@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tab切换案例</title>
+  <style>
+    ul{margin:0;padding:0;}
+    .tab_title ul{overflow: hidden;}
+    .tab_title ul li{cursor:pointer;float:left;list-style-type: none;border:1px solid #ccc;border-bottom:none;padding:3px 20px;margin:0 5px;}
+    .tab_title ul li.current{background-color:pink;}
+    .tab_cont{border:1px solid #ccc;width:500px;height:300px;}
+    .tab_cont ul li{display: none;}
+    .tab_cont ul li.current{display: block;}
+  </style>
+</head>
+<body>
+  <div id="tab2" class="tab">
+    <div class="tab_title">
+      <ul>
+        <li class="current">公告</li>
+        <li>规则</li>
+        <li>论坛</li>
+        <li>公益</li>
+      </ul>
+    </div>
+    <div class="tab_cont">
+      <ul>
+        <li class="current">关于开展打击网络“有偿删帖”和“软色情”专项的公告</li>
+        <li>新增《淘宝网汽配行业管理规范》公示通知</li>
+        <li>淘宝618大促报名</li>
+        <li>淘宝公益平台正式更名</li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <script src="./tool.js"></script>
+  <script>  
+    /**
+     * 尝试tab切换案例的几种实现方法
+     */
+
+    // 1.面向对象，参数json包含tab里要包含的信息
+    function Tab(json){
+      this.id = 'tab' + json.id;
+      this.json = json;         //接收tab组件的数据
+      this.currentIndex = 0;    //当前活跃的tab选项
+    }
+
+    // 初始化
+    Tab.prototype.init = function(){
+      var json = this.json;
+      var container = document.createElement('div');
+      var title = document.createElement('div');
+      var title_inn = document.createElement('ul');
+      var body = document.createElement('div');
+      var body_inn = document.createElement('ul');
+
+      // 标识生成的tab框架
+      container.id = this.id;
+      container.className = 'tab';
+      title.className = 'tab_title';
+      body.className = 'tab_cont';
+      
+      // 加载数据
+      for(var i=0;i<json.title.length;i++){
+        // 添加tab_title
+        var titleItem = document.createElement('li');
+        titleItem.innerText = json.title[i];
+        titleItem.index = i;
+        i == 0 && (titleItem.className = 'current');
+        title_inn.appendChild(titleItem);
+
+        // 添加tab_body
+        var bodyItem = document.createElement('li');
+        bodyItem.innerText = json.body[i];
+        i == 0 && (bodyItem.className = 'current');
+        body_inn.appendChild(bodyItem);
+      }
+
+      // 渲染到页面
+      title.appendChild(title_inn);
+      body.appendChild(body_inn);
+      container.appendChild(title);
+      container.appendChild(body);
+      document.body.appendChild(container);
+    }
+
+    Tab.prototype.tab = function(){
+      var tab_obj = document.getElementById(this.id);
+      var title = tab_obj.getElementsByClassName('tab_title')[0];
+      var cont = tab_obj.getElementsByClassName('tab_cont')[0];
+      var title_lis = title.getElementsByTagName('li');
+      var cont_lis = cont.getElementsByTagName('li');
+      var that = this;
+
+      for(var i=0;i<title_lis.length;i++){
+        title_lis[i].onclick = function(){
+          // 存储当前活跃的索引
+          that.currentIndex = this.index;
+          for(var j=0;j<title_lis.length;j++){
+            // title和cont切换
+            if(j == that.currentIndex){
+              title_lis[j].className = 'current';
+              cont_lis[j].className = 'current';
+            }else{
+              title_lis[j].className = '';
+              cont_lis[j].className = '';
+            }
+          }
+        }
+      }
+    }
+
+    var t1 = new Tab({
+      id:1,
+      title:['公告','规则','论坛','公益'],
+      body:[
+        '关于开展打击网络“有偿删帖”和“软色情”专项的公告',
+        '新增《淘宝网汽配行业管理规范》公示通知',
+        '淘宝618大促报名',
+        '淘宝公益平台正式更名'
+      ]
+    });
+    t1.init();
+    t1.tab();
+
+    // 2.面向过程，自调用匿名函数独立作用域
+    (function(){
+      var tab2 = getBy.id('tab2');
+      var title = getBy.class('tab_title')[0];
+      var title_lis = getBy.tag('li',title);
+      var cont = getBy.class('tab_cont')[0];
+      var cont_lis = getBy.tag('li',cont);
+
+      var currentIndex = 0;
+      for(var i=0;i<title_lis.length;i++){
+        title_lis[i].index = i;
+        title_lis[i].onclick = function(){
+          currentIndex = this.index;
+          for(var j=0;j<title_lis.length;j++){
+            if(currentIndex == title_lis[j].index){
+              title_lis[j].className = 'current';
+              cont_lis[j].className = 'current';
+            }else{
+              title_lis[j].className = '';
+              cont_lis[j].className = '';
+            }
+          }
+        }
+      }
+
+    }())
+  </script>
+</body>
+</html>
