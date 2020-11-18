@@ -55,11 +55,11 @@
       }
     },
     // 解绑事件
-    removeEvent:function(ele,type,handler){
+    removeEvent:function(ele,type,handlerName){
       if(ele.removeEventListener){
-        ele.removeEventListener(type,handler);
+        ele.removeEventListener(type,handlerName);
       }else if(ele.detachEvent){
-        ele.detachEvent('on'+type,handler);
+        ele.detachEvent('on'+type,handlerName);
       }else{
         ele['on'+type] = null;
       }
