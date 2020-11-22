@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <h3>------- 事件绑定 -------</h3>
+    <input type="button" id="btn1" value="点我,我是btn1" />
+    <input type="button" id="btn2" value="点我,我是btn2" />
+
+    <h3>------- 事件阶段 -------</h3>
+    <p id="con1">
+        <input type="button" value="点我会冒泡" id="btn3">
+    </p>
+    <p id="con2">
+        <input type="button" value="点我会捕获" id="btn4">
+    </p>
+    <p id="con3">
+        <input type="button" value="点我会阻止事件冒泡" id="btn5">
+    </p>
+
+    <h3>------- 案例练习 -------</h3>
+    <div class="con4">
+        <input type="text" id="input1">
+        <button id="btn6">搜索一下</button>
+    </div>
+    <script src="./tool.js"></script>
+    <script>
+        /**
+         * 1.事件绑定的方式
+         * addEventListener
+         * attachEvent
+         * 'on'+type
+         */
+
+        (function () {
+            var btn1 = getBy.id('btn1');
+            var clickHandle1 = function () {
+                console.log(this.value);
+            }
+            var clickHandle2 = function () {
+                console.log(this.value + 'again');
+            }
+
+            // 綁定和解綁事件
+            eleHandles.addEvent(btn1, 'click', clickHandle1)
+            eleHandles.addEvent(btn1, 'click', clickHandle2)
+            eleHandles.removeEvent(btn1, 'click', clickHandle1)
+
+            // onclick针对同一类型事件无法绑定多个处理函数，会产生覆盖，而addEventListener可以
+            var btn2 = getBy.id('btn2');
+            btn2.onclick = function () {
+                console.log(this.value);
+            }
+            btn2.onclick = function () {
+                console.log(this.value + 'again');
+            }
+        }());
+
+
+        /**
+         * 2.事件阶段
+         * 事件冒泡
+         * 事件目标
+         * 事件捕获
+         */
+        (function () {
+            // 事件冒泡 
+            var con1 = getBy.id('con1'),
+                btn3 = getBy.id('btn3');
+            eleHandles.addEvent(btn3, 'click', function (e) {
+                console.log('btn3');
+
+                // //  处理事件对象兼容性问题
+                // e = e || window.event;
+                // if (e.stopPropagation) {
+                //     e.stopPropagation();
+                // } else {
+                //     e.cancelBubble = true;
+                // }
+                // //  查看事件类型
+                // console.log(e.type);
+            }, false)
+            eleHandles.addEvent(con1, 'click', function () {
+                console.log('con1');
+            }, false)
+
+            // 事件捕获 
+            var con2 = getBy.id('con2'),
+                btn4 = getBy.id('btn4');
+            eleHandles.addEvent(btn4, 'click', function () {
+                console.log('btn4');
+
+                // //  处理事件对象兼容性问题
+                // e = e || window.event;
+                // if (e.stopPropagation) {
+                //     e.stopPropagation();
+                // } else {
+                //     e.cancelBubble = true;
+                // }
+                // //  查看事件类型
+                // console.log(e.type);
+            }, true)
+            eleHandles.addEvent(con2, 'click', function () {
+                console.log('con2');
+            }, true)
+
+            // 阻止事件冒泡
+            var con3 = getBy.id('con3'),
+                btn5 = getBy.id('btn5');
+            eleHandles.addEvent(btn5, 'click', function (e) {
+                console.log('btn5');
+                eleHandles.stopBubble(e);
+            }, false)
+            eleHandles.addEvent(con3, 'click', function () {
+                console.log('con3');
+            }, false)
+        }());
+
+        /**
+         * 3.百度大项目
+         */
+        (function () {
+
+        }())
+    </script>
+</body>
+
+</html>
