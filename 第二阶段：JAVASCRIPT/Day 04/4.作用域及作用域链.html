@@ -15,11 +15,11 @@
         // 全局变量
         var num1 = 10;  //会挂载到window对象上
             num2 = 20;  
-            
-        console.log(window);
 
         delete num1;
         delete num2;
+
+        console.log(num1);
 
         function func(){
             // 局部变量
@@ -36,6 +36,7 @@
         
         // console.log(x1,x2);     //x1,x2访问不到
 
+        
     </script>
     <script>
         // 作用域链
@@ -46,7 +47,18 @@
                 var num = 30;
                 console.log(num);
             }
+            func2();
         }
+
+        func1();
+    </script>
+    <script>
+        var func2;
+        function func2(){
+            console.log('func1')
+        }
+
+        console.log(func2);
     </script>
 </body>
 </html>

@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script>
     /**
     * 继承
     */
 
-    function Person(name,age,sex){
+    function Person(name, age, sex) {
       this.name = name;
       this.age = age;
       this.sex = sex;
     }
 
     // 添加方法
-    Person.prototype.sayHi = function(){
+    Person.prototype.sayHi = function () {
       console.log('hi');
     };
 
-    function Student(score){
+    function Student(score) {
       this.score = score;
     }
 
     // 1.原型继承
-    Student.prototype = new Person('小张',28,'男');
+    Student.prototype = new Person('小张', 28, '男');
 
     var stu1 = new Student(29),
-        stu2 = new Student(30);
+      stu2 = new Student(30);
 
     console.log(
-      stu1.name,stu1.age,stu1.sex,stu1.score,         // 属性无法私有
-      stu2.name,stu2.age,stu2.sex,stu2.score
+      stu1.name, stu1.age, stu1.sex, stu1.score,         // 属性无法私有
+      stu2.name, stu2.age, stu2.sex, stu2.score
     );
 
     // 2.借用构造函数
-    function Teacher(name,age,sex,height){
-      Person.call(this,name,age,sex);
+    function Teacher(name, age, sex, height) {
+      Person.call(this, name, age, sex);
       this.height = height;
     }
 
-    var tea1 = new Teacher('李老师',30,'男','178cm'),
-        tea2 = new Teacher('张老师',40,'女','166cm');
+    var tea1 = new Teacher('李老师', 30, '男', '178cm'),
+      tea2 = new Teacher('张老师', 40, '女', '166cm');
 
     console.log(
       tea1,
@@ -53,15 +55,15 @@
     );
 
     // 3.组合继承：借用构造函数 + 原型继承
-    function Manager(name,age,sex,pay){
-      Person.call(this,name,age,sex);
+    function Manager(name, age, sex, pay) {
+      Person.call(this, name, age, sex);
       this.pay = pay;
     }
 
     Manager.prototype = new Person();
 
-    var mgr1 = new Manager('张主管',29,'男','8000'),
-        mgr2 = new Manager('李主任',45,'男','7000');
+    var mgr1 = new Manager('张主管', 29, '男', '8000'),
+      mgr2 = new Manager('李主任', 45, '男', '7000');
 
     // 既继承了属性又继承了父类的方法
     console.log(
@@ -70,24 +72,55 @@
       mgr1.sayHi()
     );
 
-    // 4.拷贝继承
-    function Orgin(){}
+    // 4.浅拷贝继承
+    function Orgin() { }
 
     Orgin.prototype.name = '李四';
     Orgin.prototype.age = 18;
     Orgin.prototype.sex = '男';
-    Orgin.prototype.sayHi = function(){
+    Orgin.prototype.sayHi = function () {
       console.log('hi');
     };
+    Orgin.prototype.child = {
+      name: '小李四',
+      age: 5,
+      sex: '男'
+    }
 
     var copy = {};
 
-    for(var i in Orgin.prototype){
+    for (var i in Orgin.prototype) {
       copy[i] = Orgin.prototype[i];
     }
 
     console.log(copy);
 
+    // copy.child.name = '小张三';
+
+    console.log(Orgin.prototype);
+
+    // 5.深拷贝继承
+    var $copy = {};
+
+    function deepCopy(obj,$copy) {
+      for (var i in obj) {
+        if (typeof obj[i] !== "object") {
+          $copy[i] = obj[i];
+        }else{
+          $copy[i] = {};
+          deepCopy(obj[i],$copy[i]);
+        }
+      }
+    }
+
+    deepCopy(Orgin.prototype,$copy);
+
+    console.log($copy);
+
+    $copy.child.name = '小张三';
+
+    console.log(Orgin.prototype);
   </script>
 </body>
+
 </html>

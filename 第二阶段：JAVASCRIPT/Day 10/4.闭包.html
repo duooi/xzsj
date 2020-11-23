@@ -68,9 +68,8 @@
   
     // 案例：每次产生不同的随机数
     function createRandom2(){
-      var rand = Math.random() * 10 + 1;
       return function(){
-        rand = Math.random() * 10 + 1;
+        var rand = Math.random() * 10 + 1;
         console.log(rand);
       }
     }
