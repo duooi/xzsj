@@ -6,28 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
-            margin:0;
-            padding:0;
-        }
-        #con4{
+        .con4 {
             position: relative;
         }
-        ul{
-            margin:0;
-            padding:0;
-            border:1px solid #ccc;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            border: 1px solid #ccc;
             border-radius: 5px;
             position: absolute;
             left: 0;
         }
-        li{
+
+        li {
             list-style: none;
-            font-size:14px;
-            padding:4px 3px;
+            font-size: 14px;
+            padding: 4px 3px;
             border-bottom: 1px dotted #ccc;
         }
-        li:last-child{
+        li:hover{
+            background-color:green;
+            color:white;
+        }
+        li:last-child {
             border-bottom: none;
         }
     </style>
@@ -187,15 +189,57 @@
                 this.bind();
             }
 
+            // 绑定下拉列表和表单控件
             Datalist.prototype.bind = function () {
-                var input = document.getElementById(this.ctrlId);
-                input.onkeyup = function(){
-                    var val = this.value;
-                    document.getElementById('data').style.display = 'block';
+                var input = document.getElementById(this.ctrlId),   // 获取绑定控件
+                    datalist = document.getElementById('data'),     // 获取搜索列表
+                    data = this.data,                               // 获取源数据
+                    that = this,                             
+                    res = [];                                       // 存储匹配结果
+                input.onkeyup = function () {
+                    // 用于存储查询结果
+                    res = [];
+                    if (this.value) {
+                        // 获取输入框的值
+                        var val = this.value;
+                        // 匹配查询结果
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].indexOf(val) !== -1) {
+                                res.push(data[i]);
+                            }
+                        }
+                    }
+                    // 每次按键按下后判断存储结果的数组有无值，如果有值则显示
+                    if (res.length) {
+                        var dl = "";
+                        for (var i in res) {
+                            dl += "<li>" + res[i] + "</li>"
+                        }
+                        datalist.innerHTML = dl;
+                        datalist.style.display = 'block';
+                    } else {
+                        datalist.innerHTML = "";
+                        datalist.style.display = 'none';
+                    }
+                    
+                    // 选择事件
+                    that.select();
                 }
             }
 
-            new Datalist('input1',data);
+            Datalist.prototype.select = function(){
+                var datalist = document.getElementById('data');
+                var items = datalist.getElementsByTagName('li');
+                var ctrlId = this.ctrlId;
+
+                for(var i=0;i<items.length;i++){
+                    items[i].onclick = function(){
+                        document.getElementById(ctrlId).value = this.innerText;
+                        datalist.style.display = 'none';
+                    };
+                }
+            }
+            new Datalist('input1', data);
         }())
     </script>
 </body>
