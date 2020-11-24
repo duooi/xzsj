@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * BOM
+     */
+
+    // 三种系统对话框
+    prompt('请输入你的名字：','张三')
+    alert('你的输入有误')
+    confirm('确定提交了吗？')
+
+    // 页面加载事件
+    window.onload = function(){
+      console.log('页面加载完毕');
+    }
+    // 仅对IE有效
+    window.onunload = function(){
+      console.log('页面卸载完毕');
+    }
+    window.onbeforeunload = function(){
+      console.log('页面卸载前')
+    }
+
+    // BOM的各种内置对象
+    console.log(window.location);
+
+    // 页面重新加载
+    window.location.reload();
+
+    // 页面重定向
+    window.location.replace('http://www.baidu.com')
+    
+    // 查看浏览器所在的平台类型以及浏览器的版本
+    console.log(window.navigator.platform);
+    console.log(window.navigator.userAgent);
+    
+  </script>
+</body>
+
+</html>

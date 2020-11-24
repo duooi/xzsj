@@ -6,7 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+        *{
+            margin:0;
+            padding:0;
+        }
+        #con4{
+            position: relative;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            position: absolute;
+            left: 0;
+        }
+        li{
+            list-style: none;
+            font-size:14px;
+            padding:4px 3px;
+            border-bottom: 1px dotted #ccc;
+        }
+        li:last-child{
+            border-bottom: none;
+        }
     </style>
 </head>
 
@@ -31,6 +54,8 @@
         <input type="text" id="input1">
         <button id="btn6">搜索一下</button>
     </div>
+
+
     <script src="./tool.js"></script>
     <script>
         /**
@@ -63,7 +88,6 @@
                 console.log(this.value + 'again');
             }
         }());
-
 
         /**
          * 2.事件阶段
@@ -126,9 +150,52 @@
 
         /**
          * 3.百度大项目
+         * 将首字匹配改为字符匹配，只要有字符匹配上就显示下拉列表
          */
         (function () {
+            var data = [
+                "小杨才是最纯洁的",
+                "小杨才是最帅的",
+                "小段是最猥琐的",
+                "小超是最龌龊的",
+                "传智播客是一个培训机构",
+                "传说在传智有个很帅很纯洁的小杨",
+                "苹果好吃",
+                "苹果此次召回还是没有中国"
+            ];
 
+            function Datalist(ctrlId, data) {
+                this.ctrlId = ctrlId;
+                this.data = data;
+                this.init();
+            }
+
+            // 初始化
+            Datalist.prototype.init = function () {
+                var dl = "<ul id='data'>";
+                for (var i in this.data) {
+                    dl += "<li>" + this.data[i] + "</li>"
+                }
+                dl += "</ul>";
+
+                // 加载列表
+                document.getElementById(this.ctrlId).parentNode.innerHTML += dl;
+                // 无输入时默认隐藏下拉列表
+                document.getElementById('data').style.display = 'none';
+
+                // 绑定键盘事件
+                this.bind();
+            }
+
+            Datalist.prototype.bind = function () {
+                var input = document.getElementById(this.ctrlId);
+                input.onkeyup = function(){
+                    var val = this.value;
+                    document.getElementById('data').style.display = 'block';
+                }
+            }
+
+            new Datalist('input1',data);
         }())
     </script>
 </body>
