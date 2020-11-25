@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn_width">增加宽度</button>
+  <div id="box"></div>
+  <script src="./tool.js"></script>
+  <script>
+    /**
+     * 动画函数
+     */
+    var btn_width = getBy.id('btn_width'),
+      box = getBy.id('box');
+
+    btn_width.onclick = function () {
+      animate(box, {
+        width: 400,
+        height: 400
+      })
+    };
+
+    function animate(el, json) {
+      // 定义增长幅度
+      var step = 10;
+
+      for (var attr in json) {
+        el.timerId = setTimeout(function () {
+          // 每次取到当前状态
+          var current = parseFloat(eleHandles.getStyle(el, attr));
+          // 判断是正增长还是负增长
+          step = current > json[attr] ? -step : step;
+          console.log(current,json[attr])
+          if (Math.abs(json[attr] - current) < step) {
+            el.style[attr] = json[attr] + 'px';
+            clearInterval(el.timerId);
+          } else {
+            current += step;
+            el.style[attr] = current + 'px';
+          }
+        }, 30);
+      }
+    }
+  </script>
+</body>
+
+</html>
