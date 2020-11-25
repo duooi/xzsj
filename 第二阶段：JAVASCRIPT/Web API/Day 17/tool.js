@@ -158,6 +158,7 @@
   }
 
   var effects = {
+    // 变速效果
     speedCtrl: function (el, json, callback, status) {
       // 获取运动状态
       status = status || 'linear';
@@ -233,4 +234,5 @@
   w.eleHandles = eleHandles;
   w.getNode = getNode;
   w.effects = effects;
+  w.getEleInfos = getEleInfos;
 })(window)

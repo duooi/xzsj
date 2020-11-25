@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./tool.js"></script>
+    <script>
+        /**
+         * 光标移动
+         * pageX = clientX + scrollLeft
+         * pageY = clientY + scollTop
+         */
+
+        document.onmousemove = function (e) {
+            console.log('clientX:' + e.clientX + ',clientY:' + e.clientY);
+            console.log('scrollLeft:' + getEleInfos.getScrollTop() + ',scrollTop:' + getEleInfos.getScrollTop());
+            console.log('pageX:' + e.pageX + ',pageY:' + e.pageY);
+        }
+    </script>
+</body>
+
+</html>

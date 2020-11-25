@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width:300px;
+            height:400px;
+            background-color:red;
+            border:5px solid #000;
+            padding:2px;
+            margin:100px auto;
+            overflow:scroll;
+        }
+        #inner{
+            width:600px;
+            height:1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="inner"></div>
+    </div>
+    <script src="./tool.js"></script>
+    <script>
+        /**
+         * offset系列、scroll系列、client系列
+         * offset包括边框，而client不包括边框，即offset = client + border
+         * scroll在没有滚动条产生时数值跟client相等
+         * client不包括滚动条
+         */
+
+        var container = getBy.id('container');
+
+        console.log(
+            container.offsetWidth,
+            container.offsetHeight,
+            container.scrollWidth,
+            container.scrollHeight,
+            container.clientWidth,
+            container.clientHeight,
+            container.clientLeft,
+            container.clientTop
+        )
+
+        container.onscroll = function(){
+            console.log(
+                container.scrollTop,
+                container.scrollLeft
+            )
+        }
+        
+    </script>
+</body>
+</html>

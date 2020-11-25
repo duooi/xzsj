@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        div li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+
+        div ul {
+            width:1250px;
+            margin-left: -25px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src="./tool.js"></script>
+    <script>
+        /**
+         * 手风琴
+         */
+
+        (function () {
+            var lis = getBy.tag('li', getBy.id('box'));
+
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].style.background = 'url(./images/' + (i + 1) + '.jpg)';
+                lis[i].onmouseover = function () {
+                    for (var j = 0; j < lis.length; j++) {
+                        effects.speedCtrl(lis[j], {
+                            width: 100
+                        }, null,'ease-out')
+                    }
+                    effects.speedCtrl(this, {
+                        width: 800
+                    }, null,'ease-out')
+                };
+                lis[i].onmouseout = function(){
+                    for (var j = 0; j < lis.length; j++) {
+                        effects.speedCtrl(lis[j], {
+                            width: 240
+                        }, null,'ease-out')
+                    }
+                }
+            }
+        }())
+    </script>
+</body>
+
+</html>
