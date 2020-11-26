@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
   <meta charset="UTF-8">
   <title>旋转木马轮播图</title>
-  <link rel="stylesheet" href="css/css.css"/>
+  <link rel="stylesheet" href="css/css.css" />
   <script src="./tool.js"></script>
   <script>
     // 配置数据
@@ -45,26 +46,43 @@
       }//4
     ];
 
-    
+    window.onload = function () {
+      var lis = getBy.tag('li'),
+          wrap = getBy.id('wrap'),
+          btn_prev = getBy.id('arrLeft'),
+          btn_next = getBy.id('arrRight');
+      for(var i=0;i<lis.length;i++){
+        // 初始化布局
+        effects.speedCtrl(lis[i],config[i],null,'ease-out');
+      }
+
+      btn_prev.onclick = function(){
+
+      }
+      btn_next.onclick = function(){}
+    }
+
   </script>
 
 </head>
+
 <body>
-<div class="wrap" id="wrap">
-  <div class="slide" id="slide">
-    <ul>
-      <li><a href="#"><img src="images/slidepic1.jpg" alt=""/></a></li>
-      <li><a href="#"><img src="images/slidepic2.jpg" alt=""/></a></li>
-      <li><a href="#"><img src="images/slidepic3.jpg" alt=""/></a></li>
-      <li><a href="#"><img src="images/slidepic4.jpg" alt=""/></a></li>
-      <li><a href="#"><img src="images/slidepic5.jpg" alt=""/></a></li>
-    </ul>
-    <div class="arrow" id="arrow">
-      <a href="javascript:;" class="prev" id="arrLeft"></a>
-      <a href="javascript:;" class="next" id="arrRight"></a>
+  <div class="wrap" id="wrap">
+    <div class="slide" id="slide">
+      <ul>
+        <li><a href="#"><img src="images/slidepic1.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="images/slidepic2.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="images/slidepic3.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="images/slidepic4.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="images/slidepic5.jpg" alt="" /></a></li>
+      </ul>
+      <div class="arrow" id="arrow">
+        <a href="javascript:;" class="prev" id="arrLeft"></a>
+        <a href="javascript:;" class="next" id="arrRight"></a>
+      </div>
     </div>
   </div>
-</div>
 
 </body>
+
 </html>

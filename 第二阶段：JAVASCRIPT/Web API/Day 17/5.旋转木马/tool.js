@@ -194,8 +194,7 @@
             current /= 100;
             // 当传入的属性为zIndex
           } else if (attr == "zIndex") {
-            var current = parseInt(eleHandles.getStyle(el, attr));
-            el.style[attr] = current;
+            el.style[attr] = json[attr];
             // 当传入的属性为其他属性
           } else {
             var current = parseInt(eleHandles.getStyle(el, attr));
