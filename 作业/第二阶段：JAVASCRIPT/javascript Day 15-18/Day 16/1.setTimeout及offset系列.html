@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin:0;
+      padding: 0;
+    }
+    #container2 {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin-left: 50px;
+      margin-top: 50px;
+      background-color: red;
+      border: 5px solid yellow;
+      padding: 3px;
+    }
+    #container2 #inner{
+      width:30px;
+      height:30px;
+      background-color:green;
+    }
+    #pic1{
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container1">
+    <input type="checkbox" id="checkbox1" disabled>
+    <span id="txt1">承诺遵守协议(5s)</span>
+  </div>
+
+  <div id="container2">
+    <div id="inner"></div>
+  </div>
+
+  <img src="./images/u=1932964566,2834903253&fm=26&gp=0.jpg" width="20" id="pic1" alt="">
+  <script src="./tool.js"></script>
+  <script>
+    /**
+     * setTimeout及offset系列
+     */
+
+    // 案例：协议按钮禁用
+    (function () {
+      var checkbox1 = getBy.id('checkbox1');
+      var txt1 = getBy.id('txt1');
+      var seconds = 5;
+
+      var timerId = window.setInterval(function () {
+        txt1.innerText = "承诺遵守协议(" + (--seconds) + "s)"
+      }, 1000);
+
+      window.setTimeout(function () {
+        clearInterval(timerId);
+        txt1.innerText = "承诺遵守协议";
+        checkbox1.disabled = false;
+      }, 5000);
+    }());
+
+    // offset系列
+    (function () {
+      var container2 = getBy.id('container2'),
+          inner2 = getBy.id('inner');
+      console.log(
+        container2.offsetLeft,        
+        container2.offsetTop,
+        container2.offsetWidth,
+        container2.offsetHeight,
+        container2.clientWidth,
+        container2.clientHeight,
+        inner2.offsetLeft,       
+        inner2.offsetTop,
+        inner2.offsetWidth,
+        inner2.offsetHeight,
+        inner2.clientWidth,
+        inner2.clientHeight
+      )
+    }())
+
+    // 鼠标移动图案跟随
+    (function(){
+      var pic1 = getBy.id('pic1');
+
+      document.onmousemove = function(e){
+        pic1.style.left = e.clientX + 'px';
+        pic1.style.top = e.clientY + 'px';
+      }
+    }())
+  </script>
+</body>
+
+</html>

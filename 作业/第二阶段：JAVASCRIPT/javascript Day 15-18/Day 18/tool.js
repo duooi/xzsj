@@ -84,6 +84,12 @@
       } else {
         return el.currentStyle[attr];
       }
+    },
+    show:function(el){
+      el.style.display = 'block';
+    },
+    hide:function(el){
+      el.style.display = 'none';
     }
   }
 

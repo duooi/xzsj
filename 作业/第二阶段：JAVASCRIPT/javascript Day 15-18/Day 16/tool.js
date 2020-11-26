@@ -158,7 +158,6 @@
   }
 
   var effects = {
-    // 变速效果
     speedCtrl: function (el, json, callback, status) {
       // 获取运动状态
       status = status || 'linear';
@@ -194,7 +193,7 @@
             current /= 100;
             // 当传入的属性为zIndex
           } else if (attr == "zIndex") {
-            var current = json[attr];
+            var current = parseInt(eleHandles.getStyle(el, attr));
             el.style[attr] = current;
             // 当传入的属性为其他属性
           } else {
@@ -234,5 +233,4 @@
   w.eleHandles = eleHandles;
   w.getNode = getNode;
   w.effects = effects;
-  w.getEleInfos = getEleInfos;
 })(window)

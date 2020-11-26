@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 3px;
+    }
+
+    #container1 img {
+      width: 200px;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    #container2 {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    #container2 .star {
+      position: absolute;
+      color: yellow;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <h3>===========案例1：一起摇起来===========</h3>
+  <div id="example1">
+    <button id="start">摇起来</button><button id="stop">停下来</button>
+    <!-- 案例1 -->
+    <div id="container1">
+      <img src="./images/heihei.jpg" alt="">
+      <img src="./images/lyml.jpg" alt="">
+    </div>
+    <!-- 案例2 -->
+    <div id="container2">
+    </div>
+  </div>
+  <script src="./tool.js"></script>
+  <script>
+    /**
+     * 定时器
+     */
+
+    // 案例1：一起摇起来
+    (function () {
+      var btn_start = getBy.id('start'),
+        btn_stop = getBy.id('stop'),
+        cont = getBy.id('container1');
+      var timerId;
+
+      btn_start.onclick = function () {
+        timerId = setInterval(function () {
+          cont.style.marginLeft = Math.random() * 200 + "px";
+          cont.style.marginTop = Math.random() * 200 + "px";
+        }, 50);
+      }
+      btn_stop.onclick = function () {
+        clearInterval(timerId);
+      }
+    }());
+
+    // 案例2：一闪一闪亮晶晶
+    (function () {
+      var star_nums = 30;   // 存储星星数量
+      var cont2 = getBy.id('container2');
+      
+      var timerId = setInterval(function(){
+        cont2.innerHTML = "";
+        for (var i = 0; i < star_nums; i++) {
+          cont2.innerHTML += "<span class='star' id='star" + (i + 1) + "'>★</span>";
+          document.getElementById('star' + (i + 1)).style.fontSize = Math.random() * 20 + 10 + "px";
+          document.getElementById('star' + (i + 1)).style.left = Math.random() * 400 + "px";
+          document.getElementById('star' + (i + 1)).style.top = Math.random() * 400 + "px";
+        }
+      },1000);
+    }());
+  </script>
+</body>
+
+</html>

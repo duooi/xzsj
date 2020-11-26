@@ -76,14 +76,6 @@
     // 兼容事件对象
     getEvent: function (e) {
       return e || window.event;
-    },
-    // 获取元素计算属性
-    getStyle: function (el, attr) {
-      if (window.getComputedStyle) {
-        return window.getComputedStyle(el, null)[attr];
-      } else {
-        return el.currentStyle[attr];
-      }
     }
   }
 
@@ -157,82 +149,8 @@
     }
   }
 
-  var effects = {
-    // 变速效果
-    speedCtrl: function (el, json, callback, status) {
-      // 获取运动状态
-      status = status || 'linear';
-      // 定义运动速度
-      var step = 0;
-
-      clearInterval(el.timerId);
-      el.timerId = setInterval(function () {
-        // 默认该属性达到target值
-        var flag = true;
-        for (var attr in json) {
-          // 当传入的属性为opacity
-          if (attr == "opacity") {
-            var current = parseFloat(eleHandles.getStyle(el, attr)) * 100;
-            // 匀速
-            if (status == 'linear') {
-              step = current > json[attr] * 100 ? -3 : 3;
-              if (Math.abs(json[attr] * 100 - current) < Math.abs(step)) {
-                el.style[attr] = json[attr];
-              } else {
-                current += step;
-                el.style[attr] = current / 100;
-              }
-            }
-            // 匀减速
-            else if (status == 'ease-out') {
-              step = (json[attr] * 100 - current) / 10;
-              step = step > 0 ? Math.ceil(step) : Math.floor(step);
-              current += step;
-              el.style[attr] = current / 100;
-            }
-            // 将current缩小100倍，恢复原本数组
-            current /= 100;
-            // 当传入的属性为zIndex
-          } else if (attr == "zIndex") {
-            var current = json[attr];
-            el.style[attr] = current;
-            // 当传入的属性为其他属性
-          } else {
-            var current = parseInt(eleHandles.getStyle(el, attr));
-            // 匀速
-            if (status == 'linear') {
-              step = current > json[attr] ? -10 : 10;
-              if (Math.abs(json[attr] - current) < Math.abs(step)) {
-                el.style[attr] = json[attr] + 'px';
-              } else {
-                current += step;
-                el.style[attr] = current + 'px';
-              }
-            }
-            // 匀减速
-            else if (status == 'ease-out') {
-              step = (json[attr] - current) / 10;
-              step = step > 0 ? Math.ceil(step) : Math.floor(step);
-              current += step;
-              el.style[attr] = current + 'px';
-            }
-          }
-          if (current != json[attr]) {
-            flag = false;
-          }
-        }
-        if (flag) {
-          clearInterval(el.timerId);
-          callback && callback();
-        }
-      }, 20);
-    }
-  }
-
 
   w.getBy = getBy;
   w.eleHandles = eleHandles;
   w.getNode = getNode;
-  w.effects = effects;
-  w.getEleInfos = getEleInfos;
 })(window)

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-top: 5px;
+      opacity: 0.1;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">运动</button>
+  <div id="box"></div>
+  <script src="./tool.js"></script>
+  <script>
+    /**
+     * 动画函数
+     * 可以控制匀速或者变速
+     */
+    var btn_width = getBy.id('btn'),
+      box = getBy.id('box');
+
+    btn_width.onclick = function () {
+      animate(box, {
+        "width": 300,
+        "height": 400,
+        "opacity": 1
+      }, function () {
+        animate(box, {
+          "width": 700,
+          "height": 200,
+          "opacity": 0.4
+        }, null, 'linear')
+      }, 'linear')
+    };
+
+    function animate(el, json, callback, status) {
+      // 获取运动状态
+      status = status || 'linear';
+      // 定义运动速度
+      var step = 0;
+
+      clearInterval(el.timerId);
+      el.timerId = setInterval(function () {
+        // 默认该属性达到target值
+        var flag = true;
+        for (var attr in json) {
+          // 当传入的属性为opacity
+          if (attr == "opacity") {
+            var current = parseFloat(eleHandles.getStyle(el, attr)) * 100;
+            // 匀速
+            if (status == 'linear') {
+              step = current > json[attr] * 100 ? -3 : 3;
+              if (Math.abs(json[attr] * 100 - current) < Math.abs(step)) {
+                el.style[attr] = json[attr];
+              } else {
+                current += step;
+                el.style[attr] = current / 100;
+              }
+            }
+            // 匀减速
+            else if (status == 'ease-out') {
+              step = (json[attr] * 100 - current) / 10;
+              step = step > 0 ? Math.ceil(step) : Math.floor(step);
+              current += step;
+              el.style[attr] = current / 100;
+            }
+            // 将current缩小100倍，恢复原本数组
+            current /= 100;
+            // 当传入的属性为zIndex
+          } else if (attr == "zIndex") {
+            var current = parseInt(eleHandles.getStyle(el, attr));
+            el.style[attr] = current;
+            // 当传入的属性为其他属性
+          } else {
+            var current = parseInt(eleHandles.getStyle(el, attr));
+            // 匀速
+            if (status == 'linear') {
+              step = current > json[attr] ? -10 : 10;
+              if (Math.abs(json[attr] - current) < Math.abs(step)) {
+                el.style[attr] = json[attr] + 'px';
+              } else {
+                current += step;
+                el.style[attr] = current + 'px';
+              }
+            }
+            // 匀减速
+            else if (status == 'ease-out') {
+              step = (json[attr] - current) / 10;
+              step = step > 0 ? Math.ceil(step) : Math.floor(step);
+              current += step;
+              el.style[attr] = current + 'px';
+            }
+          }
+          if (current != json[attr]) {
+            flag = false;
+          }
+        }
+        if (flag) {
+          clearInterval(el.timerId);
+          callback && callback();
+        }
+      }, 20);
+    }
+  </script>
+</body>
+
+</html>

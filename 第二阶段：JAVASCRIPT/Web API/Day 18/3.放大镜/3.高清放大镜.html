@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>哈哈</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 350px;
+      height: 350px;
+      margin: 100px;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    .big {
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 360px;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      display: none;
+    }
+
+    .mask {
+      width: 175px;
+      height: 175px;
+      background: rgba(255, 255, 0, 0.4);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      cursor: move;
+      display: none;
+    }
+
+    .small {
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" id="box">
+    <div class="small">
+      <!--小层-->
+      <img src="images/small.png" width="350" alt="" />
+      <div class="mask"></div>
+      <!--遮挡层-->
+    </div>
+    <!--小图-->
+    <div class="big">
+      <!--大层-->
+      <img src="images/big.jpg" width="800" alt="" />
+      <!--大图-->
+    </div>
+    <!--大图-->
+  </div>
+  <!--导入外部的js文件-->
+  <script src="../tool.js"></script>
+  <script>
+    (function () {
+      var box = getBy.id('box'),
+        box_sl = getBy.class('small')[0],
+        mask = getBy.class('mask')[0],
+        box_bg = getBy.class('big')[0],
+        img_bg = getBy.tag('img')[1],
+        img_sl = getBy.tag('img')[0];
+
+      box_sl.onmouseover = function () {
+        eleHandles.show(mask);
+        eleHandles.show(box_bg);
+        box_sl.onmousemove = function (e) {
+          // 控制mask层的移动
+          var maskX = e.clientX - box.offsetLeft - mask.offsetWidth / 2,
+            maskY = e.clientY - box.offsetTop - mask.offsetHeight / 2;
+
+          maskX = maskX < 0 ? 0 : maskX;
+          maskY = maskY < 0 ? 0 : maskY;
+          maskX = maskX > box_sl.offsetWidth - mask.offsetWidth ? box_sl.offsetWidth - mask.offsetWidth : maskX;
+          maskY = maskY > box_sl.offsetHeight - mask.offsetHeight ? box_sl.offsetHeight - mask.offsetHeight : maskY;
+
+          mask.style.left = maskX + 'px';
+          mask.style.top = maskY + 'px';
+
+          // 控制大图的移动
+          img_bg.style.marginLeft = - maskX * img_bg.offsetWidth / img_sl.offsetWidth + 'px';
+          img_bg.style.marginTop = -maskY * img_bg.offsetHeight / img_sl.offsetHeight + 'px';
+        }
+      }
+      box_sl.onmouseout = function () {
+        eleHandles.hide(mask);
+        eleHandles.hide(box_bg);
+      }
+    }())
+  </script>
+
+</body>
+
+</html>
