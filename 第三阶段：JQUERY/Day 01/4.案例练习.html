@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container{
+      overflow: hidden;
+    }
+    .em {
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="下拉/上拉" id="btn1">
+  <div id="container">
+    <div class="em">
+      <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+        <li>li6</li>
+      </ul>
+    </div>
+    <div class="em">
+      <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+        <li>li6</li>
+      </ul>
+    </div>
+    <div class="em">
+      <ul>
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+        <li>li6</li>
+      </ul>
+    </div>
+  </div>
+  <input type="text" id="txt1">
+  <button id="btn2">验证</button>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    // 页面加载
+    $(function () {
+      // 隔行变色
+      $(".em li:odd").css('backgroundColor', 'green');
+      $(".em li:even").css('backgroundColor', 'yellow');
+
+      // 下拉菜单
+      $("#btn1").mouseenter(function () {
+        $(".em").stop().show(100);
+      }).mouseleave(function () {
+        $(".em").stop().hide(100);
+      })
+
+      // 高亮显示
+      $(".em li").mouseenter(function(){
+        $(this).css('backgroundColor','#ccc').siblings().css('backgroundColor','');
+      }).mouseleave(function(){
+        $(this).css('backgroundColor','');
+      });
+
+      // 验证中文
+      $("#btn2").click(function(){
+        if(/^[\u4e00-\u9fa5]+$/.test($('#txt1').val())){
+          $('#txt1').css('backgroundColor','green');
+        }else{
+          $('#txt1').css('backgroundColor','red');
+        }
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

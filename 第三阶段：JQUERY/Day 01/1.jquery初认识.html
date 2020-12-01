@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script>
+        // jQuery中的顶级对象，jQuery == $
+        console.log(jQuery == $)
+
+        // jQuery与DOM对象的互相转化
+        console.log(
+            $("body"),
+            document.body,
+            $("body")[0] == document.body,
+            $(document.body) == $("body")
+        )
+
+        // 页面加载方式，load加载最慢
+        $(window).load(function () {
+            console.log('load');
+        })
+
+        $(function () {
+            console.log('$');
+        })
+
+        $(document).ready(function () {
+            console.log('ready');
+        })
+    </script>
+</body>
+
+</html>

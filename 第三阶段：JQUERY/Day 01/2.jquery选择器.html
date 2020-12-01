@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container">
+    <ul class="ul">
+      <li>li1</li>
+      <li class="li2">li2</li>
+      <li class="li3">li3</li>
+      <li class="li4">li4
+        <ul class="ul-inner">
+          <li class="li1-inn">li1-inn</li>
+          <li class="li2-inn">li2-inn</li>
+          <li class="li3-inn">li3-inn</li>
+        </ul>
+      </li>
+      <li class="li5">li5</li>
+    </ul>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    // 页面加载
+    $(function(){
+      // id选择器
+      $("#container").css('border','1px dotted #ccc');
+
+      // class选择器
+      $(".ul").css('backgroundColor','#eee');
+
+      // tag选择器
+      $("li").css('borderBottom','1px solid #000');
+
+      // 交集选择器
+      $("li.li2").css('backgroundColor','yellow');
+
+      // 并集选择器
+      $(".li3,.li4,.li5").css('backgroundColor','green');
+
+      // 层次选择器
+      $(".ul li").css('color','#fff');
+
+      $(".ul>li").css('listStyle','none');
+
+      $(".li1-inn~li").css('color','purple');
+
+      $(".li4+li").css('color','#000');
+    })
+  </script>
+
+</body>
+
+</html>
