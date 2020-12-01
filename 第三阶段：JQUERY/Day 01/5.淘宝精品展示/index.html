@@ -51,7 +51,7 @@
 
     #left li a:hover,
     #right li a:hover,
-    .active{
+    .active a {
       background-image: url(images/abg.gif);
     }
 
@@ -63,22 +63,41 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
   <script>
     // 页面加载
-    $(function(){
-      $("#left li").mouseenter(function(){
-        // 保存索引
-        var index = $(this).index();
+    $(function () {
 
-        $(this).addClass('active').siblings().removeClass('active');
+      // 轮播机制
+      var currentIndex = 0;     // 设置当前活跃索引
 
-        $("#center li:eq("+index+")").show().siblings().hide();
-      });
-      $("#right li").mouseenter(function(){
-        // 保存索引
-        var index = $(this).index() + 9;
+      function carousel() {
+
+        // 使当前活跃索引的项目名称呈现活跃状态
+        $(".ctrl li").removeClass("active");
+        $(".ctrl li:eq(" + currentIndex + ")").addClass("active");
+
+        // 使当前活跃索引的栏目展示，其他隐藏
+        $("#center li:eq(" + currentIndex + ")").show().siblings().hide();
+        currentIndex = currentIndex >= $(".ctrl li").length ? 0 : currentIndex + 1;
+      }
+
+      // 开启定时器
+      var timerId = setInterval(carousel, 1000);
+
+      $(".ctrl li").mouseenter(function () {
+        // 清除定时器
+        clearInterval(timerId);
+
+        // 保存索引，判断是左边列表还是右边列表，右边列表索引 + 9
+        if($(this).parent().hasClass("left")){
+          currentIndex = $(this).index();
+        }else if($(this).parent().hasClass("right")){
+          currentIndex = $(this).index() + 9;
+        }
         
-        $(this).addClass('active').siblings().removeClass('active');
-
-        $("#center li:eq("+index+")").show().siblings().hide();
+        $(".ctrl li").removeClass("active");
+        $(this).addClass('active');
+        $("#center li:eq(" + currentIndex + ")").show().siblings().hide();
+      }).mouseleave(function(){
+        timerId = setInterval(carousel,1000);
       });
     });
   </script>
@@ -86,7 +105,7 @@
 
 <body>
   <div class="wrapper">
-    <ul id="left">
+    <ul class="ctrl left" id="left">
       <li><a href="#">女靴</a></li>
       <li><a href="#">雪地靴</a></li>
       <li><a href="#">冬裙</a></li>
@@ -117,7 +136,7 @@
       <li><a href="#"><img src="images/男棉服.jpg" width="200" height="250" /></a></li>
       <li><a href="#"><img src="images/男靴.jpg" width="200" height="250" /></a></li>
     </ul>
-    <ul id="right">
+    <ul class="ctrl right" id="right">
       <li><a href="#">女包</a></li>
       <li><a href="#">男包</a></li>
       <li><a href="#">登山鞋</a></li>
