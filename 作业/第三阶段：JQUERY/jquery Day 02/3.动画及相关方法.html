@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dv {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="显示/隐藏" id="btn1" />
+    <input type="button" value="下拉/上滑" id="btn2" />
+    <input type="button" value="淡入/淡出" id="btn3" />
+    <div id="dv"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var $dv = $("#dv");
+            // 显示与隐藏
+            $("#btn1").click(function () {
+                if ($dv.css("display") == "block") {
+                    $dv.hide(2000);
+                } else {
+                    $dv.show(2000);
+                }
+            });
+
+            // 下拉与上滑
+            $("#btn2").click(function(){
+                $dv.slideToggle(2000);
+            })
+
+            // 淡入与淡出
+            $("#btn3").click(function(){
+                $dv.fadeToggle(2000);
+            })
+        });
+    </script>
+</body>
+
+</html>

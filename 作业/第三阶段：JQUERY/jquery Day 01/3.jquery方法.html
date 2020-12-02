@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container">
+    <input type="text" value="请输入文字" id="input1" />
+    <ul class="ul">
+      <li>li1</li>
+      <li class="li2">li2</li>
+      <li class="li3">li3</li>
+      <li class="li4">li4
+        <ul class="ul-inner">
+          <li class="li1-inn">li1-inn</li>
+          <li class="li2-inn">li2-inn</li>
+          <li class="li3-inn">li3-inn</li>
+        </ul>
+      </li>
+      <li class="li5">li5</li>
+    </ul>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    // 页面加载
+    $(function(){
+      // .val()
+      $("#input1").val('我已经输入了');     // 设置val
+      console.log($("#input1").val());    // 获取val
+
+      // .text()
+      $(".li3").text('这是更新后的li3');    // 设置innerText
+      console.log($(".li3").text());      // 获取innerText
+
+      // .css()
+      $(".li4").css('backgroundColor','purple');        // 设置css
+      console.log($(".li4").css('backgroundColor'));    // 获取css
+
+      // .html()
+      $(".li5").html('<h2>这是更新后的li5</h2>');    // 设置innerHTML
+      console.log($(".li5").html());               // 获取innerHTML
+
+      // .children()
+      console.log($('.ul-inner').children());
+    });
+  </script>
+
+</body>
+
+</html>
