@@ -23,6 +23,11 @@
     <div id="dv1"></div>
     <input type="button" id="btn1" value="切换类名"/>
     <div id="dv2"></div>
+    <input type="button" value="点击" id="btn2"/>
+    <div id="dv3">
+        <p>这是一个p元素</p>
+    </div>
+    <div id="dv4"></div>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <script>
         $(function(){
@@ -41,6 +46,23 @@
             /**
             * 操作兄弟元素
             */
+            console.log(
+                $("#dv2").prev(),
+                $("#dv2").prevAll(),
+                $("#dv2").prevAll('input'),
+                $("#dv1").next(),
+                $("#dv1").nextAll(),
+                $("#dv1").nextAll('input'),
+                $("#btn1").siblings()
+            );
+
+            $("#btn2").click(function(){
+                // 被动添加
+                $("#dv4").append($("#dv3 p"));
+                // 主动添加
+                $("#dv4 p").appendTo("#dv3");
+            });
+
             
         })
     </script>
