@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 600px;
+      margin-top: 5px;
+    }
+
+    #sp_area {
+      position: relative;
+      width: 600px;
+      font-size: 10px;
+    }
+
+    #sp_area input {
+      width: 90px;
+    }
+
+    #sp_area input#b_add,
+    #sp_area input#b_save,
+    #sp_area input#b_search {
+      width: 40px;
+      font-size: 10px;
+    }
+
+    table {
+      width: 100%;
+      font-size: 10px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 案例练习
+    */
+
+    $(function () {
+      var $add = $("#btn_add"),
+        $remove = $("#btn_remove"),
+        $update = $("#btn_update"),
+        $container = $("#container");
+
+      // 书目数据
+      var table_data = [
+        {
+          title: 'JAVA程序设计',
+          description: 'JAVA语言学习、面向对象编程',
+          num: 5,
+          price: '$50.00'
+        },
+        {
+          title: 'HTML+CSS语言精粹',
+          description: 'HTML+CSS代码练习',
+          num: 10,
+          price: '$80.00'
+        },
+        {
+          title: 'JAVASCRIPT程序设计',
+          description: 'JAVASCRIPT语言学习、面向对象编程',
+          num: 3,
+          price: '$100.00'
+        },
+        {
+          title: 'PYTHON设计思想',
+          description: 'PYTHON语言学习、面向对象编程',
+          num: 6,
+          price: '$20.00'
+        },
+        {
+          title: 'JAVA程序设计',
+          description: 'JAVA语言学习、面向对象编程',
+          num: 5,
+          price: '$50.00'
+        }
+      ];
+
+      function BookSys(books) {
+        this.books = books;
+      }
+
+      // 初始化书目列表
+      BookSys.prototype.init = function ($ele) {
+        var books = this.books;
+        $ele.empty().append("<table border='1'><tbody><tr><th><input type='checkbox' class='btn_all'/></th><th>序号</th><th>书名</th><th>描述</th><th>数量</th><th>单价</th></tr></tbody></table>")
+        // 遍历书目
+        books.forEach(function (item, index, arr) {
+          $("tbody").append("<tr><td><input type='checkbox'/></td><td>" + (index + 1) + "</td><td>" + item.title + "</td><td>" + item.description + "</td><td>" + item.num + "</td><td>" + item.price + "</td></tr>")
+        });
+
+        // 全选与全不选
+        $(".btn_all").click(function () {
+          $("tbody input:checkbox").prop("checked", $(this).prop("checked"));
+        })
+      };
+
+      // 添加一条书目信息
+      BookSys.prototype.add = function ($ele) {
+        var _this = this;
+        $ele.empty().append("<p id='area_add'>书名：<input type='text' class='title' /> 描述：<input type='text' class='desc' /> 数量：<input type='number' class='num' /> 单价：<input type='text' class='price' /> <input type='button' value='添加' id='b_add'/></p>");
+
+        // 添加书目记录
+        $("#area_add").delegate("#b_add", "click", function (e) {
+          // 检测书目信息是否填写完整
+          if (!$(".title").val() || !$(".desc").val() || !$(".num").val() || !$(".price").val()) {
+            alert("请补充完整书目信息");
+          } else {
+            _this.books.push({
+              title: $(".title").val(),
+              description: $(".desc").val(),
+              num: $(".num").val(),
+              price: $(".price").val()
+            });
+            // 添加后重新刷新列表
+            _this.init($container);
+          }
+        });
+      }
+
+      // 修改一条书目信息
+      BookSys.prototype.update = function ($ele) {
+        var _this = this;
+
+        // 对勾选的书目信息进行编辑
+        var _index = $ele.next().find("input:checked").parent().next().text();
+        // 检测修改前是否有勾选
+        if (!_index) {
+          alert("请先勾选对应书目记录");
+        } else {
+          $ele.empty().append("<p id='area_update'>书名：<input type='text' class='title' /> 描述：<input type='text' class='desc' /> 数量：<input type='number' class='num' /> 单价：<input type='text' class='price' /> <input type='button' value='保存' id='b_save'/></p>");
+
+          var $area_update = $("#area_update");
+          var record = _this.books[_index - 1];
+          console.log(record);
+          $area_update.find(".title").val(record.title);
+          $area_update.find(".desc").val(record.description);
+          $area_update.find(".num").val(record.num);
+          $area_update.find(".price").val(record.price);
+
+          // 编辑完后保存刷新
+          $("#area_update").delegate("#b_save", "click", function (e) {
+            _this.books[_index - 1].title = $area_update.find(".title").val(),
+              _this.books[_index - 1].description = $area_update.find(".desc").val(),
+              _this.books[_index - 1].num = $area_update.find(".num").val(),
+              _this.books[_index - 1].price = $area_update.find(".price").val()
+            _this.init($container);
+            $(e.delegateTarget).remove();
+          });
+        }
+      }
+
+      // 删除任意条书目信息
+      BookSys.prototype.delete = function ($ele) {
+        var _this = this;
+        // 查找勾选记录
+        if (!$ele.find("input:checked").length) {
+          alert("请先勾选要删除的记录");
+        } else {
+          var $cks = $ele.find("td input:checkbox");
+          for(var i=$cks.length - 1;i>=0;i--){
+            if($cks.eq(i).prop("checked")){
+              _this.books.splice(i,1);
+            }
+          }
+          _this.init($ele);
+        }
+      }
+
+      // 查找一条书目信息
+      BookSys.prototype.search = function ($ele) {
+        var _this = this;
+        $ele.empty().append("<p id='area_search'>书名：<input type='text' class='title' /> <input type='button' value='查找' id='b_search'/></p>");
+
+        // 查找书目记录
+        $("#area_search").delegate("#b_search", "click", function (e) {
+          // 检测书目信息是否填写完整
+          if (!$(".title").val()) {
+            _this.init($container);
+            alert("请输入要查找的书目信息");
+          } else {
+            var keyword = $(".title").val();
+            // 存储查找结果
+            var result = [];
+            _this.books.forEach(function (item, index, arr) {
+              if (item.title.indexOf(keyword) !== -1) {
+                result.push(item);
+              }
+            });
+
+            // 打印查找列表
+            $ele.next().empty().append("<table border='1'><tbody><tr><th><input type='checkbox'/></th><th>序号</th><th>书名</th><th>描述</th><th>数量</th><th>单价</th></tr></tbody></table>")
+            // 遍历书目
+            result.forEach(function (item, index, arr) {
+              $("tbody").append("<tr><td><input type='checkbox'/></td><td>" + (index + 1) + "</td><td>" + item.title + "</td><td>" + item.description + "</td><td><input type='button' value='+'/> " + item.num + " <input type='button' value='-'/></td><td>" + item.price + "</td></tr>")
+            });
+          }
+        });
+      }
+
+      // 初始化书目系统
+      var book = new BookSys(table_data);
+      book.init($container);
+
+      // 添加书目
+      $("#btn_add").click(function () {
+        book.add($("#sp_area"));
+      });
+
+      // 修改书目
+      $("#btn_update").click(function () {
+        book.update($("#sp_area"));
+      });
+
+      // 删除书目
+      $("#btn_remove").click(function () {
+        book.delete($container);
+      })
+
+      // 查找书目
+      $("#btn_search").click(function () {
+        book.search($("#sp_area"));
+      })
+
+    });
+  </script>
+  <h3>========= 案例：书目简易系统 ==========</h3>
+  <input type="button" value="添加书目" id="btn_add" />
+  <input type="button" value="移除书目" id="btn_remove" />
+  <input type="button" value="修改书目" id="btn_update" />
+  <input type="button" value="查找书目" id="btn_search" />
+  <div id="sp_area"></div>
+  <div id="container"></div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 2000px;
+      width: 2000px;
+    }
+
+    #box1 {
+      width: 100px;
+      height: 100px;
+      padding: 5px;
+      /* position: relative; */
+      border: 10px solid #000;
+      background-color: green;
+      margin-left: 20px;
+      margin-top: 30px;
+      left: 50px;
+      top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 元素属性操作
+    */
+
+    $(function () {
+
+      // 操作元素的宽高和left/top
+      {
+        console.log(
+          'JQ对象尺寸属性',
+          $("#box1").width(),   // 获取元素内容的宽
+          $("#box1").height(),  // 获取元素内容的高
+          $("#box1").innerWidth(),  // 获取元素内容的宽 + 左右内边距
+          $("#box1").innerHeight(), // 获取元素内容的高 + 上下内边距
+          $("#box1").outerWidth(),  // 获取元素内容的宽 + 左右内边距 + 左右边框
+          $("#box1").outerHeight(), // 获取元素内容的高 + 上下内边距 + 上下边框
+          'DOM元素尺寸属性',
+          $("#box1")[0].offsetWidth,  // 对应JQ里的outerWidth()
+          $("#box1")[0].offsetHeight, // 对应JQ里的outerHeight()
+          $("#box1")[0].clientWidth,  // 对应JQ里的innerWidth()
+          $("#box1")[0].clientHeight, // 对应JQ里的innerHeight()
+          parseInt(window.getComputedStyle($("#box1")[0], null).width),  // 对应JQ里的width()
+          parseInt(window.getComputedStyle($("#box1")[0], null).height)  // 对应JQ里的height()
+        );
+      }
+    });
+  </script>
+  <div id="box1"></div>
+</body>
+
+</html>

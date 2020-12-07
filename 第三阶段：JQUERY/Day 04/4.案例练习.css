@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.tabBox {
+    border: 1px solid gray;
+    border-top: 2px solid red;
+    width: 890px;
+}
+
+.tabBox .hd {
+    overflow: hidden;
+}
+
+.tabBox .hd ul {
+    display: block;
+}
+
+.tabBox .hd ul li {
+    cursor: pointer;
+    width: 177px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    list-style-type: none;
+    float: left;
+    margin-left: -1px;
+    border: 1px solid gray;
+    border-top: 0 solid white;
+    background-color: #ddd;
+}
+
+.tabBox .bd {
+    height: 230px;
+    border: 1px solid gray;
+    border-top: 0 solid white;
+}
+
+.tabBox .bd li {
+    list-style-type: none;
+    width: 156px;
+    padding: 0 10px;
+    float: left;
+}
+
+.tabBox .bd li {
+    width: 130px;
+    height: 132px;
+    padding: 30px 13px 0 13px;
+    margin: 0 auto;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.tabBox .bd .lh {
+    overflow: hidden;
+}
+
+.tabBox .hd li.on {
+    background-color: white;
+}

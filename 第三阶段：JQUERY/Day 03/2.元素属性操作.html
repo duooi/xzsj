@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 2000px;
+      width: 2000px;
+    }
+
+    #box1 {
+      width: 100px;
+      height: 100px;
+      padding: 5px;
+      /* position: relative; */
+      border: 10px solid #000;
+      background-color: green;
+      margin-left: 20px;
+      margin-top: 30px;
+      left: 50px;
+      top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 元素属性操作
+    */
+
+    $(function () {
+      // value属性操作
+      {
+        console.log($("#st1").val(2));  // 选中val为2的option元素
+
+        console.log($("#txt1").val());  // 获取到的textarea的value值和设置的值不一致
+
+        console.log($("#txt1").text()); // textarea设置和获取text的值前后一致
+        $("#txt1").text('789');
+        console.log($("#txt1").text());
+      }
+
+      // 自定义属性操作
+      {
+        console.log(
+          $("#txt1").attr("id"),      // 可获取元素自带属性
+          $("#txt1").attr("index"),   // 可获取元素自定义属性
+          $("#ck1").attr("checked"),  // 使用.attr()获取checkbox状态时，没勾选返回undefined，勾选了返回checked
+          $("#ck1").prop("checked")   // 使用.prop()获取checkbox状态时，没勾选返回false,勾选了返回true
+        );
+      }
+
+      // 操作元素的宽高和left/top
+      {
+        console.log(
+          'JQ对象尺寸属性',
+          $("#box1").width(),   // 获取元素内容的宽
+          $("#box1").height(),  // 获取元素内容的高
+          $("#box1").innerWidth(),  // 获取元素内容的宽 + 左右内边距
+          $("#box1").innerHeight(), // 获取元素内容的高 + 上下内边距
+          $("#box1").outerWidth(),  // 获取元素内容的宽 + 左右内边距 + 左右边框
+          $("#box1").outerHeight(), // 获取元素内容的高 + 上下内边距 + 上下边框
+          'DOM元素尺寸属性',
+          $("#box1")[0].offsetWidth,  // 对应JQ里的outerWidth()
+          $("#box1")[0].offsetHeight, // 对应JQ里的outerHeight()
+          $("#box1")[0].clientWidth,  // 对应JQ里的innerWidth()
+          $("#box1")[0].clientHeight, // 对应JQ里的innerHeight()
+          parseInt(window.getComputedStyle($("#box1")[0], null).width),  // 对应JQ里的width()
+          parseInt(window.getComputedStyle($("#box1")[0], null).height)  // 对应JQ里的height()
+        );
+
+        console.log(
+          $("#box1").css("left"),       // 获取设置的left值
+          $("#box1").css("top"),        // 获取设置的top值
+          $("#box1").css("marginLeft"), // 获取设置的marginLeft值
+          $("#box1").offset().left,     // 获取元素在页面实际距离定位属性元素左上角的水平偏移量
+          $("#box1").offset().top       // 获取元素在页面实际距离定位属性元素左上角的垂直偏移量
+        );
+      }
+
+      // 获取元素向上和向左卷曲的距离
+      {
+        $(document).scroll(function () {
+          console.log(
+            $(document.documentElement).scrollLeft(),   // 获取页面向左滚去的距离
+            $(document.documentElement).scrollTop()     // 获取页面向上滚去的距离
+          );
+        });
+      }
+    });
+  </script>
+  <select id="st1">
+    <option value="1">option1</option>
+    <option value="2">option2</option>
+    <option value="3">option3</option>
+  </select>
+  <textarea id="txt1" value="123" index="1">456</textarea>
+  <input type="checkbox" id="ck1" checked>哈哈
+  <div id="box1"></div>
+</body>
+
+</html>

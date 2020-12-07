@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #cont{
+      width:200px;
+      height:200px;
+      background-color:red;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 为元素绑定事件的不同方式
+    */
+    $(function(){
+      // 事件单独写时相同事件可以拥有多个处理函数，并在事件触发时同时调用
+      $("#btn1").click(function(){
+        console.log("btn1被点了");
+      }).click(function(){
+        console.log("btn1又被点了");
+      });
+
+      // bind事件绑定
+      $("#btn2").bind("mouseover",function(){
+        console.log("进来btn2了");
+      }).bind({
+        'click':function(){
+          console.log("btn2被点了");
+        },
+        'mouseout':function(){
+          console.log("离开btn2了");
+        }
+      });
+
+      // delegate事件委托
+      $("#cont").delegate("**","click",function(){
+        console.log("btn3被代理了");
+      })
+    });
+  </script>
+  <input type="button" value="点我,btn1" id="btn1"/>
+  <input type="button" value="点我,btn2" id="btn2"/>
+  <div id="cont">
+    <input type="button" value="点我,btn3" id="btn3"/>
+    <p>我是一个p元素</p>
+  </div>
+</body>
+</html>

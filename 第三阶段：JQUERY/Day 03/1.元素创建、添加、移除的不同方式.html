@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 元素创建、添加、移除的不同方式
+    */
+
+    $(function(){
+      // 元素创建
+      {
+        $("#cont1").append("<p>append</p>");          // 被动添加
+        $("<p>appendTo</p>").appendTo($("#cont1"));   // 主动添加
+
+        $("#cont1").html($("#cont1").html() + "<p>html</p>");   // 会覆盖id为cont1的div里的内容  
+      }
+
+      // 元素添加
+      {
+        $("#cont1").prepend("<a href='#'>这是一个链接</a>");    // 被动插入到第一个子元素前面
+        $("<h1>我是主动插入的</h1>").prependTo($("#cont1"));    // 主动插入到第一个子元素前面
+
+        $("#cont1").before("<div id='cont0'>我是cont1的前一个兄弟元素</div>");    // 添加到div的前一个兄弟元素
+        $("#cont1").after("<div id='cont2'>我是cont1的后一个兄弟元素</div>");     // 添加到div的后一个兄弟元素
+      }
+
+      // 元素移除
+      {
+        $("#cont3").html("");
+        $("#cont1").empty();  //清空id为cont1的div的子元素
+        $("#cont1").remove(); //连同元素本身和内容全部清空
+      }
+    });
+  </script>
+
+  <div id="cont1"></div>
+  <div id="cont3">
+    <p>这是cont3的子元素</p>
+  </div>
+</body>
+</html>
