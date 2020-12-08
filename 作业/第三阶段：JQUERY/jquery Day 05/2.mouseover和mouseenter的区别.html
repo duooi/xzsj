@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 260px;
+            height: 260px;
+            background-color: green;
+            padding: 20px;
+        }
+        
+        #inner {
+            width: 100px;
+            height: 70px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script>
+        /**
+         * mouseover和mouseenter的区别
+         */
+        $(function() {
+            $("#container").mouseover(function() {
+                console.log("mouseover");
+            }).mouseout(function() {
+                console.log("mouseout");
+            })
+
+            $("#container").mouseenter(function() {
+                console.log("mouseenter");
+            }).mouseleave(function() {
+                console.log("mouseleave");
+            })
+
+        });
+    </script>
+    <div id="container">
+        <div id="inner"></div>
+    </div>
+</body>
+
+</html>

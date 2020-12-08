@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script>
+    /**
+    * 事件相关
+    */
+
+    $(function(){
+      // 另一种绑定事件的方式
+      $("body").on("click","#btn1",function(){
+        console.log('btn1被点了');
+      });
+
+      $("#btn1").bind("mouseout",function(){
+        console.log('bind---mouseout');
+      });
+
+      $("#btn1").bind("mouseover",function(){
+        console.log('bind---mouseover');
+        // 阻止事件冒泡
+        return false;   
+      })
+
+      $("body").delegate("#btn1","mouseover",function(){
+        console.log("delegate---mouseover");
+      });
+
+      $("body").bind("mouseover",function(){
+        console.log("body---mouseover");
+      })
+
+      // 事件解绑
+      $("#btn1").unbind('mouseout');   // bind()不传入事件类型时默认解绑所有事件
+      $("body").undelegate('#btn1');   // undelegate()不传入参数则默认解绑所有事件，包括on委托绑定的事件
+      $("body").off("","#btn1");       // off()不传入参数时则默认解绑委托在body上的所有事件
+
+      // 事件触发
+
+      // 通过其他事件触发
+      $("#btn2").click(function(){
+        $("#txt1").focus();
+      });
+
+      // 通过trigger手动触发
+      $("#txt1").trigger('focus');
+
+      // 通过triggerHandler手动触发
+      $("#txt2").triggerHandler('focus');
+
+      // 事件参数对象
+      $(document).mousedown(function(e){
+        console.log(e.altKey);
+        console.log(e.keyCode);
+      })
+    });
+  </script>
+  <input type="button" value="点我" id="btn1"/>
+  <input type="button" value="聚焦到文本框" id="btn2"/>
+  <input type="text" id="txt1"/>
+  <input type="text" id="txt2"/>
+</body>
+</html>

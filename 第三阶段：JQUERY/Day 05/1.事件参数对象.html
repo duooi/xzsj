@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 160px;
+            border: 1px solid #ccc;
+            margin: 10px 0 0;
+            padding: 0;
+        }
+        
+        ul li {
+            list-style: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script>
+        /**
+         * 事件参数对象
+         */
+        $(function() {
+            // $("body").delegate("#btn", "click", function(e) {
+            //     console.log(e.target);
+            //     console.log(e.currentTarget);
+            //     console.log(e.delegateTarget);
+            // });
+            $("body").bind("click", function(e) {
+                console.log(e.target); // target指向事件触发的元素
+                console.log(e.currentTarget); // currentTarget指向事件绑定的元素
+            })
+
+            $("ul").on("mouseover", "li", function(e) {
+                $(e.target).css("backgroundColor", "green").siblings().css("backgroundColor", "");
+            });
+        });
+    </script>
+    <input type="button" value="点我" id="btn" />
+    <ul class="ul">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+    </ul>
+</body>
+
+</html>
