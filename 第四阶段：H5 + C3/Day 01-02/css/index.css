@@ -1,0 +1,123 @@
+/* 公用元素 */
+.btn{
+    cursor: pointer;
+}
+.btn_go{
+    position: absolute;
+    top:50px;
+    right:50px;
+    z-index: 1000;
+}
+.btn_more{
+    position: absolute;
+    bottom: 80px;
+    right:100px;
+    z-index: 1000;
+    animation: more00 .5s linear infinite alternate;
+}
+@keyframes more00{
+    from{}
+    to{
+        transform: translateY(30px);
+    }
+}
+.content{
+    position:relative;
+    width:900px;
+    height: 100%;
+    bottom:0;
+    left:50%;
+    margin-left: -450px;
+}
+
+/* 第一屏 */
+.section01{
+    background: url(../images/01-bg.png) no-repeat center bottom;
+}
+.section01 .img_goods{
+    position: absolute;
+    left: 50px;
+    bottom: 100px;
+}
+.section01 .img_sofa{
+    position: absolute;
+    left:220px;
+    bottom:330px;
+    animation: more00 1s linear infinite alternate;
+}
+.section01 .img_fly{
+    position: absolute;
+    right:-100px;
+    bottom:650px;
+    animation: fly01 .8s linear infinite alternate;
+}
+@keyframes fly01{
+    from{}
+    to{
+        transform: translateY(50px);
+    }
+}
+
+/* 第二屏 */
+.section02{
+    background: url(../images/02-bg.png) no-repeat center bottom;
+}
+.section02 .text img{
+    position:absolute;
+    bottom:570px;
+    left:50%;
+    transform: translateX(-50%);
+    opacity: 1;
+}
+.section02 .text img:last-child{
+    opacity: 0;
+}
+.section02.now .text img:first-child{
+    opacity: 0;
+    transition:opacity .5s linear;
+}
+.section02.now .text img:last-child{
+    opacity: 1;
+    transition:opacity .5s linear;
+}
+.section02 .search{
+    position: absolute;
+    bottom:300px;
+    left:50%;
+    margin-left:-111px;
+    transform: translateX(1000px);
+}
+.section02.now .search{
+    animation: search02 2s linear forwards;
+}
+.section02 .search img:last-child{
+    position: absolute;
+    top:5px;
+    left:96px;
+    opacity: 0;
+}
+.section02.now .search img:last-child{
+    opacity: 1;
+    transition: opacity .2s linear 1s;
+}
+@keyframes search02{
+    from{}
+    30%,80%{
+        transform: none;
+    }
+    to{
+        transform:translate(196px,-138px) scale(.7);
+    }
+}
+.section02 .img_goods{
+    position: absolute;
+    bottom:210px;
+    left:50%;
+    margin-left: -220px;
+    transform:scale(0);
+}
+.section02.now .img_goods{
+    transform-origin: right bottom;
+    transform:scale(1);
+    transition:transform .4s linear 2s;
+}
