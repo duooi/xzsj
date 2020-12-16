@@ -169,6 +169,20 @@
     bottom:140px;
     right:412px;
 }
+.section03 .img_sofa{
+    position: absolute;
+    bottom: 251px;
+    left:217px;
+    opacity: 0;
+    z-index: 1002;
+}
+.section03.leave .img_sofa{
+    opacity: 1;
+    transform:translate(200px,830px) rotate(30deg);
+    transition:transform .8s linear;
+    
+}
+
 
 /* 第四屏 */
 .section04{
@@ -180,6 +194,139 @@
     left:50%;
     margin-left: -200px;
 }
-.section04 .cart img{
+.section04 img{
     position: absolute;
+}
+.section04.now .cart{
+    transform: translateX(1000px);
+    transition: transform 1s linear;
+    z-index: 1002;
+}
+.section04 .cart img:first-child{
+    left:167px;
+    bottom:-125px;
+    transform:rotate(30deg);
+    opacity: 0;
+}
+.section04.now .cart img:first-child{
+    opacity: 1;
+}
+.section04 .text img{
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom: 500px;
+}
+.section04 .text img:last-child{
+    opacity: 0;
+}
+.section04.now .text img:first-child{
+    opacity: 0;
+    transition: opacity .2s linear 1s;
+}
+.section04.now .text img:last-child{
+    opacity: 1;
+    transition: opacity .2s linear 1s;
+}
+.section04 .address{
+    position: absolute;
+    left:50%;
+    bottom:480px;
+    margin-left: -140px;
+    opacity: 0;
+}
+.section04.now .address{
+    opacity: 1;
+    transition:opacity .5s linear 1s;
+}
+.section04 .address img:last-child{
+    top:60px;
+    left:60px;
+    opacity: 0;
+}
+.section04.now .address img:last-child{
+    opacity: 1;
+    transition:opacity .5s linear 1.2s;
+}
+.section04.now .img_cloud{
+    margin-top: 30px;
+    animation: cloud04 50s linear infinite alternate;
+}
+@keyframes cloud04{
+    from{}
+    to{
+        transform: translateX(1000px);
+    }
+}
+
+/* 第五屏 */
+.section05{
+    background: url(../images/05-bg.png) no-repeat center bottom;
+}
+.section05 .content{
+    overflow: hidden;
+}
+.section05 .text{
+    position: absolute;
+    top:50px;
+    left: 0;
+}
+.section05 .card{
+    position: absolute;
+    left: 50px;
+    top:270px;
+}
+.section05 .card img,
+.section05 .op img{
+    position: absolute;
+}
+.section05 .card img:first-child{
+    transform: translateY(100px);
+    top:-80px;
+    left: 100px;
+}
+.section05 .card img:nth-child(2){
+    z-index: 1001;
+}
+.section05 .card img:last-child{
+    top:150px;
+    left: 80px;
+    transform: translateY(-1000px);
+}
+.section05 .op img:first-child,
+.section05 .op img:nth-child(2){
+    top:-210px;
+    right:40px;
+}
+.section05 .op img:nth-child(2){
+    opacity: 0;
+}
+.section05 .op img:last-child{
+    bottom: 0;
+    right: 100px;
+    transform:translateY(1000px);
+}
+.section05.now .card img:last-child{
+    animation: sofa05 1.4s linear forwards;
+}
+@keyframes sofa05{
+    from{}
+    60%{
+        transform:translateY(-110px);
+    }
+    to{
+        transform: none;
+    }
+}
+.section05.now .card img:first-child{
+    transform: none;
+    transition: transform .56s linear .84s;
+}
+.section05.now .op img:last-child{
+    transform:none;
+    transition: transform 1.4s linear;
+}
+.section05.now .op img:nth-child(2){
+    opacity: 1;
+    transition: opacity .5s linear 1.4s;
 }
