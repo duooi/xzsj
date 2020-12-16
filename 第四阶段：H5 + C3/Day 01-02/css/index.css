@@ -119,5 +119,38 @@
 .section02.now .img_goods{
     transform-origin: right bottom;
     transform:scale(1);
-    transition:transform .4s linear 2s;
+    transition:transform .4s linear 1.6s;
+}
+.section02 .img_sofa{
+    position:absolute;
+    left: 291px;
+    bottom:298px;
+    transform: scale(.5);
+    z-index: 1001;
+    opacity: 0;
+}
+.section02.now .img_sofa{
+    opacity: 1;
+    transition: opacity .1s linear 2s;
+}
+.section02.leave .img_sofa{
+    transform: translateY(1000px);
+    transition: transform 1s linear forwards;
+}
+
+/* 第三屏 */
+.section03{
+    background: url(../images/03-bg.png) no-repeat center bottom;
+}
+.section03 .img_sofa{
+    position: absolute;
+    bottom:230px;
+    left:210px;
+    transform: translate(82px,-986px) scale(.5);
+    opacity: 0;
+}
+.section03 .change{
+    position:absolute;
+    bottom:120px;
+    right:50px;
 }
