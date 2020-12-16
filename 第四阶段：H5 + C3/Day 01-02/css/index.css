@@ -3,13 +3,13 @@
     cursor: pointer;
 }
 .btn_go{
-    position: absolute;
+    position: fixed;
     top:50px;
     right:50px;
     z-index: 1000;
 }
 .btn_more{
-    position: absolute;
+    position: fixed;
     bottom: 80px;
     right:100px;
     z-index: 1000;
@@ -48,7 +48,7 @@
 .section01 .img_fly{
     position: absolute;
     right:-100px;
-    bottom:650px;
+    bottom:550px;
     animation: fly01 .8s linear infinite alternate;
 }
 @keyframes fly01{
@@ -134,23 +134,52 @@
     transition: opacity .1s linear 2s;
 }
 .section02.leave .img_sofa{
-    transform: translateY(1000px);
-    transition: transform 1s linear forwards;
+    transform: translate(-74px,900px);
+    transition: all .8s linear;
 }
 
 /* 第三屏 */
 .section03{
     background: url(../images/03-bg.png) no-repeat center bottom;
 }
-.section03 .img_sofa{
-    position: absolute;
-    bottom:230px;
-    left:210px;
-    transform: translate(82px,-986px) scale(.5);
-    opacity: 0;
-}
 .section03 .change{
     position:absolute;
-    bottom:120px;
-    right:50px;
+    bottom:306px;
+    right:412px;
+}
+.section03 .change img,
+.section03 .cart img{
+    position:absolute;
+}
+.section03 .change img:last-child,
+.section03 .cart img:last-child{
+    opacity: 0;
+}
+.section03.now .change img:last-child,
+.section03.now .cart img:last-child{
+    opacity: 1;
+    transition: opacity .2s linear;
+}
+.section03.now .change img:first-child,
+.section03.now .cart img:first-child{
+    opacity: 0;
+}
+.section03 .cart{
+    position: absolute;
+    bottom:140px;
+    right:412px;
+}
+
+/* 第四屏 */
+.section04{
+    background: url(../images/04-bg.png) no-repeat center bottom;
+}
+.section04 .cart{
+    position: absolute;
+    bottom:400px;
+    left:50%;
+    margin-left: -200px;
+}
+.section04 .cart img{
+    position: absolute;
 }

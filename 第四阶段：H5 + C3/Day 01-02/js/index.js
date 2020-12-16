@@ -21,7 +21,7 @@ $(function(){
         // 当某一屏离开后
         onLeave:function(index,nextIndex){
             if(index == 2 && nextIndex == 3){
-                console.log(this)
+                $(this).addClass('leave');
             }
         }
                 
