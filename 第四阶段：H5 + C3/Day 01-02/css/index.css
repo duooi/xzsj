@@ -288,7 +288,7 @@
 .section05 .card img:nth-child(2){
     z-index: 1001;
 }
-.section05 .card img:last-child{
+.section05 .card .img_sofa{
     top:150px;
     left: 80px;
     transform: translateY(-1000px);
@@ -306,7 +306,7 @@
     right: 100px;
     transform:translateY(1000px);
 }
-.section05.now .card img:last-child{
+.section05.now .img_sofa{
     animation: sofa05 1.4s linear forwards;
 }
 @keyframes sofa05{
@@ -330,3 +330,82 @@
     opacity: 1;
     transition: opacity .5s linear 1.4s;
 }
+.section05.leave .card .img_sofa{
+    transform: translateY(1000px) scale(.3);
+    /* opacity: 0; */
+    transition: all 1s linear;
+}
+
+/* 第六屏 */
+.section06{
+    background: url(../images/06-bg.png) no-repeat 30% bottom;
+}
+.section06 img{
+    position: absolute;
+}
+.section06 .cloud img:first-child{
+    top:20px;
+    left: 50%;
+    margin-left: -270px;
+}
+.section06 .cloud img:last-child{
+    top:40px;
+}
+.section06.now .cloud img:first-child{
+    animation: cloud06 100s linear infinite alternate;
+}
+.section06.now .cloud img:last-child{
+    animation: cloud06 300s linear infinite alternate;
+}
+@keyframes cloud06{
+    from{}
+    to{
+        transform: translateX(1000px);
+    }
+}
+.section06 .text img{
+    top:150px;
+    left: 150px;
+}
+.section06 .img_car{
+    position: absolute;
+    bottom:0;
+    left: 0;
+    z-index: 1003;
+}
+.section06 .img_worker,
+.section06 .img_say{
+    transform-origin:left bottom;
+    transform: scale(.2);
+    bottom:30px;
+    left: 80px;
+}
+.section06 .img_box{
+    left:20px;
+    bottom:500px;
+}
+.section06 .img_buyer,
+.section06 .img_addr{
+    bottom:120px;
+    left:230px;
+}
+.section06 .img_addr,
+.section06 .text img:last-child{
+    opacity: 0;
+}
+.section06 .person img:first-child{
+    right:180px;
+    bottom:110px;
+    transform-origin: right bottom;
+    transform: scale(.2);
+    opacity: 0;
+}
+.section06 .person img:last-child{
+    right:140px;
+    bottom:116px;
+    opacity: 0;
+}
+/* .section06.now{
+    background-position: right bottom;
+    transition:background-position 1s linear;
+} */
