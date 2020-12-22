@@ -134,6 +134,7 @@
     transition: opacity .1s linear 2s;
 }
 .section02.leave .img_sofa{
+    opacity: 1;
     transform: translate(-74px,900px);
     transition: all .8s linear;
 }
@@ -264,7 +265,7 @@
     background: url(../images/05-bg.png) no-repeat center bottom;
 }
 .section05 .content{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .section05 .text{
     position: absolute;
@@ -291,7 +292,16 @@
 .section05 .card .img_sofa{
     top:150px;
     left: 80px;
-    transform: translateY(-1000px);
+    margin-top:-1000px;
+    display: none;
+}
+.section05 .op{
+    position: absolute;
+    top:0;
+    right: 0;
+    width:300px;
+    height:100%;
+    overflow: hidden;
 }
 .section05 .op img:first-child,
 .section05 .op img:nth-child(2){
@@ -306,16 +316,16 @@
     right: 100px;
     transform:translateY(1000px);
 }
-.section05.now .img_sofa{
+.section05.active .card .img_sofa{
     animation: sofa05 1.4s linear forwards;
 }
 @keyframes sofa05{
     from{}
     60%{
-        transform:translateY(-110px);
+        margin-top: -110px;
     }
     to{
-        transform: none;
+        margin-top: 0;
     }
 }
 .section05.now .card img:first-child{
@@ -330,10 +340,18 @@
     opacity: 1;
     transition: opacity .5s linear 1.4s;
 }
-.section05.leave .card .img_sofa{
-    transform: translateY(1000px) scale(.3);
+.section05.leave .img_sofa{
+    margin-top:0;
+    animation: sofa06 1s linear forwards;
+    z-index: 1019;
     /* opacity: 0; */
-    transition: all 1s linear;
+}
+@keyframes sofa06{
+    0%{}
+    100%{
+        transform: translateY(660px) scale(.3);
+        opacity: 0;
+    }
 }
 
 /* 第六屏 */
@@ -370,42 +388,157 @@
 .section06 .img_car{
     position: absolute;
     bottom:0;
-    left: 0;
-    z-index: 1003;
+    left: 140px;
+    z-index: 1030;
 }
-.section06 .img_worker,
-.section06 .img_say{
+.section06 .img_worker{
     transform-origin:left bottom;
     transform: scale(.2);
     bottom:30px;
-    left: 80px;
+    left: 200px;
+    z-index: 1020;
+}
+.section06 .img_say{
+    left: 520px;
+    bottom:400px;
+    opacity: 0;
 }
 .section06 .img_box{
-    left:20px;
+    left:170px;
     bottom:500px;
+    z-index: 1021;
 }
 .section06 .img_buyer,
 .section06 .img_addr{
     bottom:120px;
-    left:230px;
+    left:350px;
 }
 .section06 .img_addr,
 .section06 .text img:last-child{
     opacity: 0;
 }
 .section06 .person img:first-child{
-    right:180px;
-    bottom:110px;
+    right:-80px;
+    bottom:116px;
     transform-origin: right bottom;
-    transform: scale(.2);
+    transform: scale(.3);
     opacity: 0;
+    z-index: 1021;
 }
 .section06 .person img:last-child{
-    right:140px;
+    right:-106px;
     bottom:116px;
     opacity: 0;
 }
-/* .section06.now{
+.section06.now{
     background-position: right bottom;
-    transition:background-position 1s linear;
-} */
+    transition:background-position 1s linear .8s;
+}
+.section06.now .img_box{
+    transform:translateY(480px);
+    transition:transform .4s linear .4s;
+}
+.section06.now .car .img_worker{
+    animation: worker06 1s linear 1.8s forwards;
+}
+@keyframes worker06{
+    from{}
+    60%{
+        transform: translateY(-80px) scale(.6);
+    }
+    to{
+        transform: translateY(-80px) translateX(140px) scale(1);
+    }
+}
+.section06.now .img_say{
+    opacity: 1;
+    transition: opacity 1s linear 2.8s;
+}
+.section06.now .img_addr,
+.section06.now .text img:last-child{
+    opacity: 1;
+    transition:opacity .2s linear 1.8s;
+}
+.section06.now .person img:last-child{
+    opacity: 1;
+    transition: opacity .5s linear 2.8s;
+}
+.section06.now .person img:first-child{ 
+    animation:person06 1s linear 3.3s forwards;
+}
+@keyframes person06{
+    from{
+        opacity: 1;
+        transform:scale(.2);
+    }
+    50%{
+        opacity: 1;
+        transform: scale(1) translateX(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(-230px);
+    }
+}
+
+/* 第七屏 */
+.section07{
+    background:url(../images/07-bg.png) no-repeat center bottom;
+}
+.section07 .star{
+    position: absolute;
+    left:156px;
+    bottom: 445px;
+}
+.section07 .img_text{
+    position: absolute;
+    left:170px;
+    bottom: 380px;
+    opacity: 0;
+} 
+.section07.now .img_text{
+    animation: text07 1.2s linear 2.5s forwards;
+}
+@keyframes text07{
+    from{}
+    60%{
+        transform: scale(1.4);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 第八屏 */
+.section08{
+    background: url(../images/08-bg.png) repeat center bottom;
+}
+.section08 .content{
+    position: static;
+}
+.section08 .btn_again{
+    position: absolute;
+    right: 300px;
+    bottom: 600px;
+}
+.section08 .begin{
+    position: absolute;
+    bottom:500px;
+    left:50%;
+    transform:translateX(-50%);
+}
+.section08 .begin img:last-child{
+    display: none;
+}
+.section08 .img_hand{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.section08 .begin:hover img:first-child{
+    display: none;
+}
+.section08 .begin:hover img:last-child{
+    display: block;
+}
