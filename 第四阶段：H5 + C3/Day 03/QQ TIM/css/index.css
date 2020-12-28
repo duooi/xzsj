@@ -1,0 +1,274 @@
+/* 公共样式 */
+
+html, body {
+  font-size: 18px;
+  width: 100%;
+  color: #333;
+}
+
+html, body, ul, li, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.tr {
+  text-align: right;
+}
+
+.q_sound .bg,
+.q_receive .bg,
+.q_coop .bg {
+  height: 500px;
+  background-attachment: fixed;
+}
+
+.f40 {
+  font-size: 40px;
+}
+
+.shadow {
+  text-shadow: 0 0 2px #000;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mt100 {
+  margin-top: 100px;
+}
+
+/* 顶部导航 */
+
+.q_header {
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(134, 40, 40, 0.02) 90%, rgba(0, 0, 0, 0));
+  position: relative;
+  z-index: 10;
+}
+
+.q_nav_h {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.q_logo {
+  float: left;
+  width: 100px;
+  height: 75px;
+  background: url(../images/nav_brand.png) no-repeat center;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.q_logo h1 {
+  text-indent: 9999px;
+}
+
+.q_nav_h>ul li {
+  float: left;
+  margin: 0 10px;
+}
+
+.q_nav_h .fl li a {
+  display: block;
+  padding: 0 20px;
+  line-height: 75px;
+}
+
+.q_nav_h .fl li a.active {
+  background-color: #12b7f5;
+}
+
+.q_nav_h div.fr {
+  width: 350px;
+}
+
+.q_nav_h .fr>a {
+  width: 96px;
+  height: 36px;
+  background-color: #12b7f5;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 19px;
+  text-align: center;
+  line-height: 36px;
+}
+
+.q_nav_h div.fr li {
+  float: left;
+  margin-left: 40px;
+  line-height: 50px;
+}
+
+.q_nav_h div.fr li a {
+  display: inline;
+  font-size: 14px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, .8);
+}
+
+.q_nav_h span {
+  font-size: 14px;
+}
+
+/* 第一部分 */
+
+.q_banner {
+  width: 100%;
+  background: url(../images/banner-bg.jpg) no-repeat center top;
+  margin-top: -150px;
+  padding-top: 150px;
+}
+
+.q_banner img {
+  display: block;
+  margin: 20px auto;
+}
+
+.q_banner img:last-child {
+  width: 100%;
+}
+
+/* 第二部分 */
+
+.q_sound .q_slogan {
+  height: 321px;
+  background: url(../images/sound-text.png) no-repeat center top;
+}
+
+.q_sound .q_slogan h1 {
+  text-indent: -9999px;
+}
+
+.q_sound .bg {
+  background: url(../images/sound-bg.jpg) no-repeat center top/cover;
+}
+
+.desc {
+  width: 980px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.q_sound .desc_img {
+  width: 700px;
+  height: 700px;
+  background: url(../images/sound-phone.png) no-repeat center top/cover;
+  position: absolute;
+  top: -200px;
+}
+
+.q_sound .desc_text p {
+  width: 500px;
+}
+
+/* 第三部分 */
+
+.q_receive .bg {
+  background: url(../images/file-bg.jpg) no-repeat center top/cover;
+}
+
+.q_receive .desc_img {
+  width: 600px;
+  height: 340px;
+  background: url(../images/file-mac.png) no-repeat center top/cover;
+  position: absolute;
+  top: 100px;
+  right: -50px;
+}
+
+/* 第四部分 */
+
+.q_coop .bg {
+  background: url(../images/interest-bg.jpg) no-repeat center top/cover;
+}
+
+.q_coop .desc_img {
+  width: 350px;
+  height: 500px;
+  background: url(../images/interest-phone.png) no-repeat center top/cover;
+}
+
+/* 第五部分 */
+
+.q_footer {
+  height: 250px;
+  background-color: #2a2a2a;
+  padding-top: 50px;
+  font-size: 12px;
+  color: #666;
+}
+
+.q_nav_f {
+  width: 800px;
+  margin: 0 auto 100px;
+  overflow: hidden;
+}
+
+.q_nav_f a {
+  float: left;
+  width: 25%;
+  color: #666;
+  padding-top: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.q_nav_f a:hover{
+  color:#12b7f5;
+}
+
+.q_nav_f a::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -40px;
+  background: url(../images/footer.png) no-repeat;
+}
+
+.q_nav_f a:nth-child(1)::after {
+  background-position: 3px 0;
+}
+
+.q_nav_f a:nth-child(2)::after {
+  background-position: -108px 0;
+}
+
+.q_nav_f a:nth-child(3)::after {
+  background-position: -215px 0;
+}
+
+.q_nav_f a:nth-child(4)::after {
+  background-position: -324px 0;
+}
+
+.q_nav_f a:hover::after{
+  background-position-y: -93px;
+}
+
+.q_footer p{
+  text-align: center;
+}
