@@ -19,8 +19,8 @@
   <div class="box"></div>
   <br>
   <ul>
-    <li data-score="78">小明</li>
-    <li data-score="90">小红</li>
+    <li data-score="78" data-age="18">小明</li>
+    <li data-score="90" data-age="20">小红</li>
     <li data-score="95">小李</li>
   </ul>
   <script src="../Day 03/3D切割轮播图/js/jquery.min.js"></script>
@@ -52,15 +52,18 @@
     /**
      * 自定义元素
      * data-*
+     * 访问元素的自定义属性集合:.dataset
+     * JQuery中访问及修改自定义属性：.data()
      */
     $("li").each(function(index,item){
       if(index == 1){
+        // JQuery操作的是内存数据
         $(item).data("score",80);
+        // DOM操作的是DOM对象数据，内存数据不会变
+        $(item)[0].dataset['age'] = 22;
       }
       $(item).text($(item).text() + ":" + $(item).data("score"));
     });
-
-    console.log($("li")[0].dataset);
 
   </script>
 </body>

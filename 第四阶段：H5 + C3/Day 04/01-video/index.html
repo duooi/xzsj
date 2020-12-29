@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放器</title>
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <figure id="vd">
+        <figcaption>
+            <h2>视频播放器</h2>
+        </figcaption>
+        <div class="player">
+            <!-- <img src="images/loading.gif" class="loading"> -->
+            <!-- <video src="video/chrome.mp4"></video> -->
+            <div class="ctrls">
+                <a href="javascript:;" class="btn_play fa fa-play"></a>
+                <div class="progress">
+                    <span class="line"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="timeline">
+                    <span class="curr">00:00:00</span>/
+                    <span class="all">00:00:00</span>
+                </div> 
+                <a href="javascript:;" class="btn_expand"></a>
+            </div>
+        </div>
+    </figure>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
