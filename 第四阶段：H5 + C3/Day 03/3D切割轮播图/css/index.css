@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 560px;
+  height: 300px;
+  margin: 200px auto;
+  position: relative;
+}
+
+.container ul li {
+  width: 112px;
+  height: 300px;
+  float: left;
+  position: relative;
+  transform-style: preserve-3d;
+  z-index: 10;
+}
+
+.container ul li span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index:10;
+}
+
+/* 同一个li下的不同span */
+.container ul li span:first-child {
+  background: url(../images/1.jpg) no-repeat;
+  transform: translateZ(150px);
+}
+
+.container ul li span:nth-child(2) {
+  background: url(../images/2.jpg) no-repeat;
+  transform:rotateX(90deg) translateZ(150px);
+}
+
+.container ul li span:nth-child(3) {
+  background: url(../images/3.jpg) no-repeat;
+  transform:rotateX(180deg) translateZ(150px);
+}
+
+.container ul li span:last-child {
+  background: url(../images/4.jpg) no-repeat;
+  transform: rotateX(-90deg) translateZ(150px);
+}
+
+/* 每一个li的span背景定位 */
+.container ul li:first-child span{
+  background-position:0 0;
+}
+
+.container ul li:nth-child(2) span{
+  background-position:-112px 0;
+}
+
+.container ul li:nth-child(3) span{
+  background-position:-224px 0;
+}
+
+.container ul li:nth-child(4) span{
+  background-position:-336px 0;
+}
+
+.container ul li:last-child span{
+  background-position:-448px 0;
+}
+
+/* 左右按钮 */
+.arrow{
+  position: absolute;
+  width:50px;
+  height:50px;
+  background-color:rgba(0, 0, 0, .3);
+  color:#fff;
+  line-height: 50px;
+  text-align: center;
+  top:125px;
+  z-index: 100;
+  transform: translateZ(150px);
+}
+.arrow-l{
+  left: 0;
+}
+.arrow-r{
+  right: 0;
+}
+

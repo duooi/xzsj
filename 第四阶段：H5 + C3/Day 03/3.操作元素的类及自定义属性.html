@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{width:500px;height:200px;background-color: yellow;border:2px dotted blue;margin-top: 10px;}
+    .sty1{width:300px;height:300px;}
+    .sty2{background-color:green;}
+    .sty3{border:5px solid #000;}
+  </style>
+</head>
+<body>
+  <button>addClass</button>
+  <button>removeClass</button>
+  <button>toggleClass</button>
+  <button>hasClass</button>
+  <div class="box"></div>
+  <br>
+  <ul>
+    <li data-score="78">小明</li>
+    <li data-score="90">小红</li>
+    <li data-score="95">小李</li>
+  </ul>
+  <script src="../Day 03/3D切割轮播图/js/jquery.min.js"></script>
+  <script>
+    $(function(){
+      /**
+       * JQuery中操作元素的类：addClass/removeClass/toggleClass/hasClass
+       * HTML5中操作元素的类（基于classList）：add/remove/toggle/contains
+       */
+
+      $("button").eq(0).click(function(){
+        // $(".box").addClass("sty1 sty2");
+        $(".box")[0].classList.add("sty1");
+      });
+      $("button").eq(1).click(function(){
+        // $(".box").removeClass("sty1");
+        $(".box")[0].classList.remove("sty1");
+      });
+      $("button").eq(2).click(function(){
+        // $(".box").toggleClass("sty3");
+        $(".box")[0].classList.toggle("sty3");
+      });
+      $("button").eq(3).click(function(){
+        // alert($(".box").hasClass("sty1"));
+        alert($(".box")[0].classList.contains("sty1"));
+      });
+    });
+
+    /**
+     * 自定义元素
+     * data-*
+     */
+    $("li").each(function(index,item){
+      if(index == 1){
+        $(item).data("score",80);
+      }
+      $(item).text($(item).text() + ":" + $(item).data("score"));
+    });
+
+    console.log($("li")[0].dataset);
+
+  </script>
+</body>
+</html>
