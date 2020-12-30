@@ -11,16 +11,23 @@ $(function () {
         $pg_line = $(".progress .line"),
         $pg_bar = $(".progress .bar"),
         $vc_line = $(".voice .line"),
-        $vc_bar = $(".voice .bar"),
+        $vc_bar = $(".voice .bar");
     var prev_sound = $vc_bar.height();
 
     // 1.处理视频缓冲加载
     $video[0].oncanplay = function () {
+        console.log(1)
         // 1.1 视频准备就绪
         $(this).show();
         // 1.2 初始化视频时长
         $(".all").text(formatTime(this.duration));
 
+    }
+
+    // 2.当播放列表已停止时
+    $video[0].onended = function(){
+        $(".btn_play").addClass("fa-play").removeClass("fa-pause");
+        $video[0].currentTime = 0;
     }
 
     $video[0].ontimeupdate = function(){
@@ -59,10 +66,17 @@ $(function () {
     });
 
     // 5.声音调大调小
+    $(".btn_volume").click(function(){
+        $(".voice").toggle();
+    });
     $vc_bar.click(function(e){
         $vc_line.css("height",$vc_bar.height() - e.offsetY + "px");
-        var rate = ($vc_bar.height() - e.offsetY) / $vc_bar.height();
-        $video[0].volume = $vc_sound * rate;
+
+        // 根据声音条高度的比率来调整声音大小
+        var rate = ($vc_bar.height() - e.offsetY) / prev_sound;
+        prev_sound = $vc_bar.height() - e.offsetY;
+
+        $video[0].volume = $video[0].volume * rate;
     });
 
     /**

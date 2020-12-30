@@ -60,7 +60,7 @@ figcaption{
 
 .progress{
     position: relative;
-    width:450px;
+    width:430px;
     height:10px;
     float: left;
     margin:15px 0;
@@ -94,7 +94,7 @@ figcaption{
 }
 
 .player .ctrls .btn_volume {
-    float: left;
+    float: right;
     width: 20px;
     height: 20px;
     margin: 10px;
@@ -102,7 +102,7 @@ figcaption{
 }
 
 .player .ctrls .btn_expand {
-    float: left;
+    float: right;
     width: 20px;
     height: 20px;
     margin: 10px;
@@ -115,8 +115,9 @@ figcaption{
     width:20px;
     height:80px;
     bottom:45px;
-    right:53px;
+    right:52px;
     border-radius:5px;
+    display: none;
 }
 .voice .range{
     position:relative;

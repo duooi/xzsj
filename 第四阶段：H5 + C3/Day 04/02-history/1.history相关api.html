@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    a{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <a href="javascript:;" class="forwards">前进</a>
+  <a href="javascript:;" class="back">后退</a>
+  <a href="javascript:;" class="go">跳跃</a>
+  <p>
+    <a href="http://www.baidu.com">百度一下</a>
+  </p>
+  
+  <script src="./jquery.min.js"></script>
+  <script>
+    $(function(){
+      /**
+       * history
+       * 1.forwards/back/go都会保留历史记录
+       * 2.pushState/replaceState
+       */
+      $(".forwards").click(function(){
+        history.forward();
+      });
+
+      $(".back").click(function(){
+        history.back();
+      });
+
+      $(".go").click(function(){
+        history.go(-1);
+      });
+
+      console.log(history.state);
+    });
+  </script>
+</body>
+</html>
