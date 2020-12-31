@@ -21,6 +21,6 @@
     $html = "WINSTON";
   }
 
-$obj = { page : $page , html : $html };
+$obj = array("page“=>$page,"html"=>$html);
 
 echo $obj;
