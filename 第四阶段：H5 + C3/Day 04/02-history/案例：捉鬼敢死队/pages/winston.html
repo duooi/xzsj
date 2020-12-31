@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select your Ghostbuster</title>
+  <style>
+    *{
+      margin: 0;
+      padding:0;
+    }
+    body{
+      background-color: #333;
+    }
+    .container{
+      width:840px;
+      margin:200px auto 0;
+      text-align: center;
+    }
+    .list{
+      overflow: hidden;
+    }
+    .list a{
+      float: left;
+      width:150px;
+      margin:0 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      filter:grayscale(100%) brightness(1) contrast(140%);
+    }
+    .list a:hover{
+      filter:grayscale(100%) brightness(1.2) contrast(140%);
+      transition: all .3s linear;
+    }
+    .list a img{
+      display: block;
+      width: 100%;
+    }
+    .content{
+      margin-top: 170px;
+      color:#666;
+    }
+    .content .character{
+      color:#ddd;
+      font-size:30px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="list">
+      <a href="pages/bill.html"><img src="../images/bill.png" alt=""></a>
+      <a href="pages/dan.html"><img src="../images/dan.png" alt=""></a>
+      <a href="pages/egon.html"><img src="../images/egon.png" alt=""></a>
+      <a href="pages/winston.html"><img src="../images/winston.png" alt=""></a>  
+    </div>
+    <div class="content">
+      <h3>GHOSTBUSTER</h3>
+      <p class="character">WINSTON</p>
+    </div>
+  </div>
+  <script src="../jquery.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
