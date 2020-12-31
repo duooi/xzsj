@@ -1,8 +1,8 @@
 <?php
   
   header("Content-Type","application/json");
-  $html = "";
-  $page = "";
+  $html = "";   // 存储页面内容
+  $page = "";   // 存储页面标志
 
   // 如果接收到的page参数为index或者没接收到page
   if($_GET['page'] == "index" || !$_GET["page"]){
@@ -21,6 +21,8 @@
     $html = "WINSTON";
   }
 
-$obj = { page : $page , html : $html };
+// $obj = { page : $page , html : $html };
 
-echo $obj;
+echo $_GET['page'];
+
+?>
