@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    canvas{
+      border:1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="1000" height="600"></canvas>
+  <script>
+    var canvas = document.querySelector("canvas");
+    var ctx = canvas.getContext("2d");
+
+    /**
+     * 绘制圆弧
+     * 圆弧半径为50，线条粗细为10，蓝色
+     */
+
+    var x0 = 100,
+        y0 = 100,
+        r = 30,
+        startAngle = 0,
+        endAngle = 0,
+        direction = false;
+
+    // 开始绘制
+    // 顺时针,角度为正值
+    for(;endAngle <= 2 * Math.PI;endAngle += (Math.PI / 4)){
+      ctx.beginPath();
+      ctx.moveTo(x0,y0);
+      ctx.arc(x0,y0,r,startAngle,endAngle,direction);
+      x0 += 100;
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "darkblue";
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // 顺时针，角度为负值
+    x0 = 100;
+    y0 += 100;
+    endAngle = 0;
+    for(;endAngle <= 2 * Math.PI;endAngle += (Math.PI / 4)){
+      ctx.beginPath();
+      ctx.moveTo(x0,y0);
+      ctx.arc(x0,y0,r,startAngle,-endAngle,direction);
+      x0 += 100;
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "darkblue";
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // 逆时针，角度为正值
+    x0 = 100;
+    y0 += 100;
+    endAngle = 0;
+    direction = true;
+    for(;endAngle <= 2 * Math.PI;endAngle += (Math.PI / 4)){
+      ctx.beginPath();
+      ctx.moveTo(x0,y0);
+      ctx.arc(x0,y0,r,startAngle,endAngle,direction);
+      x0 += 100;
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "darkblue";
+      ctx.closePath();
+      ctx.fill();
+    }
+    
+    // 逆时针，角度为负值
+    x0 = 100;
+    y0 += 100;
+    endAngle = 0;
+    direction = true;
+    for(;endAngle <= 2 * Math.PI;endAngle += (Math.PI / 4)){
+      ctx.beginPath();
+      ctx.moveTo(x0,y0);
+      ctx.arc(x0,y0,r,startAngle,-endAngle,direction);
+      x0 += 100;
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "darkblue";
+      ctx.closePath();
+      ctx.fill();
+    }
+  </script>
+</body>
+</html>

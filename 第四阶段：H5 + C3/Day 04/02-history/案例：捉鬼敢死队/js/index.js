@@ -10,6 +10,7 @@ $(function(){
         $.ajax({
             url:"api/data.php",
             method:"GET",
+            contentType: "application/json; charset=utf-8",
             data:{
                 "page":page
             },
