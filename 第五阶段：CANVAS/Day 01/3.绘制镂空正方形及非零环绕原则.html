@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS</title>
+    <style>
+        canvas{
+            /* width: 600px;
+            height:400px; */
+            border:1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        /**
+         * 非零环绕原则：
+         * 从区域内部引出一条线，主要看穿过回路的次数以及每个回路的时针方向，顺时针+1，逆时针-1
+         * 总和为0则不填充，非0则填充
+         */
+
+        ctx.moveTo(100,100);
+        ctx.lineTo(300,100);
+        ctx.lineTo(300,300);
+        ctx.lineTo(100,300);
+        ctx.lineTo(100,100);
+
+        ctx.moveTo(150,150);
+        ctx.lineTo(150,250);
+        ctx.lineTo(250,250);
+        ctx.lineTo(250,150);
+        ctx.lineTo(150,150);
+
+        ctx.fillStyle = "blue";
+        ctx.fill();
+    </script>
+</body>
+</html>
