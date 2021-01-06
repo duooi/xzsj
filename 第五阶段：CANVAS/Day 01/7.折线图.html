@@ -23,8 +23,13 @@
         /**
          * 折线图构造函数
          */
-        function LineChart(){
-
+        function LineChart(ctx){
+            this.ctx = ctx || document.querySelector("canvas");
+            // 网格大小
+            this.gridSize = 10;
+            // 坐标轴边距
+            this.dist = 20;
+            
         }
 
         // 初始化折线图
