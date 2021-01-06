@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS</title>
+    <style>
+        canvas{
+            /* width: 600px;
+            height:400px; */
+            border:1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="400"></canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.lineWidth = 20;
+
+        
+        // 设置虚线
+        ctx.beginPath();
+        ctx.moveTo(500,100);
+        // 设置虚线偏移量，正数往左，负数往右
+        ctx.lineDashOffset = -50;
+        ctx.setLineDash([5,15,25]);
+        ctx.lineWidth = 15;
+        ctx.lineTo(700,100);
+        ctx.stroke();
+
+        // 获取虚线样式
+        console.log(ctx.getLineDash());
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS</title>
+    <style>
+        canvas {
+            /* width: 600px;
+            height:400px; */
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">清除画布</button><br>
+    <canvas id="canvas" width="1000" height="400"></canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // 绘制矩形
+        ctx.fillRect(10, 10, 100, 100);
+        ctx.fill();
+
+        ctx.strokeRect(150, 10, 100, 100);
+        ctx.stroke();
+
+        document.querySelector("#btn").onclick = function () {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        }
+
+        // 绘制渐变矩形
+
+        /**
+         * 随机生成颜色
+         */
+        var randomColor = function () {
+            var r = Math.floor(Math.random() * 256),
+                g = Math.floor(Math.random() * 256),
+                b = Math.floor(Math.random() * 256);
+
+            return "rgb(" + r + "," + g + "," + b + ")";
+        };
+
+        ctx.beginPath();
+        // 单色填充
+        // ctx.fillStyle = randomColor();
+        // 渐变填充
+        var lg = ctx.createLinearGradient(290, 10, 390, 10);
+        lg.addColorStop(0, randomColor());
+        lg.addColorStop(1, randomColor());
+        ctx.fillStyle = lg;
+
+        ctx.fillRect(290, 10, 100, 100);
+        ctx.fill();
+
+
+    </script>
+</body>
+
+</html>
