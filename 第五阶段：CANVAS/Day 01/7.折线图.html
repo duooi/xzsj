@@ -23,29 +23,137 @@
         /**
          * 折线图构造函数
          */
-        function LineChart(ctx){
+        function LineChart(ctx) {
             this.ctx = ctx || document.querySelector("canvas");
-            // 网格大小
+            // 网格尺寸
             this.gridSize = 10;
             // 坐标轴边距
-            this.dist = 20;
-            
+            this.dist = 40;
+            // 画布尺寸
+            this.canvasWidth = ctx.canvas.width;
+            this.canvasHeight = ctx.canvas.height;
+            // 箭头尺寸
+            this.arrowSize = 10;
+            // 方块尺寸
+            this.pointSize = 10;
         }
 
         // 初始化折线图
-        LineChart.prototype.init = function(){}
+        LineChart.prototype.init = function (data) {
+            this.drawGrid();
+            this.drawCoord();
+            this.drawPoint(data);
+        }
 
         // 绘制网格
-        LineChart.prototype.drawGrid = function(){}
+        LineChart.prototype.drawGrid = function () {
+            var xNums = this.canvasWidth / this.gridSize,
+                yNums = this.canvasHeight / this.gridSize;
+            var index = 0;
+
+            this.ctx.strokeStyle = "#ddd";
+            // 绘制水平方向
+            while (index <= yNums) {
+                this.ctx.moveTo(0, index * this.gridSize + 0.5);
+                this.ctx.lineTo(this.canvasWidth, index * this.gridSize + 0.5);
+                index++;
+            }
+
+            index = 0;
+
+            // 绘制垂直方向
+            while (index <= xNums) {
+                this.ctx.moveTo(index * this.gridSize + 0.5, 0);
+                this.ctx.lineTo(index * this.gridSize + 0.5, this.canvasHeight);
+                index++;
+            }
+
+            this.ctx.stroke();
+        }
 
         // 绘制坐标轴
-        LineChart.prototype.drawCoord = function(){}
+        LineChart.prototype.drawCoord = function () {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = "#000";
+            // 绘制x轴
+            this.ctx.moveTo(this.dist, this.canvasHeight - this.dist + 0.5);
+            this.ctx.lineTo(this.canvasWidth - this.dist, this.canvasHeight - this.dist + 0.5);
+            // 绘制箭头
+            this.ctx.moveTo(this.canvasWidth - this.dist, this.canvasHeight - this.dist + 0.5);
+            this.ctx.lineTo(this.canvasWidth - this.dist - this.arrowSize, this.canvasHeight - this.dist + this.arrowSize / 2 + 0.5);
+            this.ctx.lineTo(this.canvasWidth - this.dist - this.arrowSize, this.canvasHeight - this.dist - this.arrowSize / 2 + 0.5);
+            this.ctx.closePath();
+            // 绘制y轴
+            this.ctx.moveTo(this.dist + 20, this.dist + 0.5);
+            this.ctx.lineTo(this.dist + 20, this.canvasHeight - this.dist + 20);
+            // 绘制箭头
+            this.ctx.moveTo(this.dist + 20, this.dist + 0.5);
+            this.ctx.lineTo(this.dist + 20 + this.arrowSize / 2, this.dist + this.arrowSize + 0.5);
+            this.ctx.lineTo(this.dist + 20 - this.arrowSize / 2, this.dist + this.arrowSize + 0.5);
+            this.ctx.closePath();
+
+            this.ctx.stroke();
+            this.ctx.fill();
+        }
 
         // 绘制点
-        LineChart.prototype.drawPoint = function(){}
+        LineChart.prototype.drawPoint = function (data) {
+            var _this = this;
+            var coordList = this.translateCoord(data);
+            
+            coordList.forEach(function(item,index){
+                _this.ctx.fillRect(item[0]-_this.pointSize/2,item[1] -_this.pointSize/2,_this.pointSize,_this.pointSize);
+            });
+
+            this.drawLine(coordList);
+        }
+
+        // 转化原始坐标为canvas坐标
+        LineChart.prototype.translateCoord = function(data){
+            var _this = this;
+            var coordList = [];
+            data.forEach(function(item,index){
+                coordList[index] = [];
+                coordList[index][0] = _this.dist + 20 + item[0];
+                coordList[index][1] = _this.canvasHeight - _this.dist - item[1];
+            });
+
+            return coordList;
+        }
 
         // 绘制折线
-        LineChart.prototype.drawLine = function(){}
+        LineChart.prototype.drawLine = function (data) { 
+            var _this = this;
+            data.forEach(function(item,index){
+                if(index == 0){
+                    _this.ctx.moveTo(item[0],item[1]);
+                }else{
+                    _this.ctx.lineTo(item[0],item[1]);
+                }
+            });
+
+            this.ctx.stroke();
+        }
+
+
+        var data = [
+            [30,40],
+            [60,80],
+            [90,140],
+            [120,90],
+            [150,30],
+            [180,200],
+            [210,400],
+            [370,500],
+            [400,40],
+            [430,80],
+            [460,140],
+            [490,90]
+        ];
+
+
+        // 生成折线图实例
+        new LineChart(ctx).init(data);
     </script>
 </body>
 
