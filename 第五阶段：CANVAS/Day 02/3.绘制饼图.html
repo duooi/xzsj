@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="1000" height="600"></canvas>
+  <script>
+    var canvas = document.querySelector("canvas");
+    var ctx = canvas.getContext("2d");
+
+    // 饼图构造函数
+    function PieChart(ctx){
+        this.ctx = ctx || document.querySelector("canvas");
+        // canvas尺寸
+        this.canvasWidth = this.ctx.canvas.width;
+        this.canvasHeight = this.ctx.canvas.height;
+        // 圆心位置
+        this.x0 = this.canvasWidth / 2 + 100;
+        this.y0 = this.canvasHeight / 2;
+        // 饼图尺寸
+        this.r = 200;
+    }
+
+    // 初始化饼图
+    PieChart.prototype.init = function(data){
+        // 转换弧度
+        this.transformAngle(data);
+        console.log(data);
+
+        this.drawPie(data);
+        this.drawCaption();
+    }
+
+    // 绘制饼图
+    PieChart.prototype.drawPie = function(data){
+        var startAngle = 0,
+            endAngle = 0;
+        
+        for(var i=0;i<data.length-1;i++){
+            endAngle = data[i].radian;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.x0,this.y0);
+            this.ctx.arc(this.x0,this.y0,this.r,startAngle,endAngle);
+            this.ctx.fillStyle = this.randomColor();
+            this.ctx.closePath();
+            this.ctx.stroke();
+            startAngle = data[i].radian;
+        }
+    }
+
+    // 弧度转换
+    PieChart.prototype.transformAngle = function(data){
+        var total = 0;
+        // 汇总求基数
+        data.forEach(function(item,index){
+            total += item.nums;
+        });
+        // 添加弧度属性
+        data.forEach(function(item,index){
+            item.radian = item.nums / total * Math.PI * 2;
+        });
+    }
+
+    // 绘制图注
+    PieChart.prototype.drawCaption = function(){}
+
+    // 生成颜色
+    PieChart.prototype.randomColor = function(){
+      var r = Math.floor(Math.random() * 256),
+          g = Math.floor(Math.random() * 256),
+          b = Math.floor(Math.random() * 256);
+
+      return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    var data = [
+        {
+            title:'20岁以下',
+            nums:39
+        },
+        {
+            title:'20-25岁',
+            nums:150
+        },
+        {
+            title:'25-30岁',
+            nums:129
+        },
+        {
+            title:'30岁以上',
+            nums:252
+        }
+    ];
+
+    new PieChart(ctx).init(data);
+  </script>
+</body>
+
+</html>
