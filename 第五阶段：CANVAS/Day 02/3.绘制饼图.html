@@ -2,108 +2,165 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    canvas {
-      border: 1px solid #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 
 <body>
-  <canvas id="canvas" width="1000" height="600"></canvas>
-  <script>
-    var canvas = document.querySelector("canvas");
-    var ctx = canvas.getContext("2d");
+    <canvas id="canvas" width="1000" height="600"></canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
 
-    // 饼图构造函数
-    function PieChart(ctx){
-        this.ctx = ctx || document.querySelector("canvas");
-        // canvas尺寸
-        this.canvasWidth = this.ctx.canvas.width;
-        this.canvasHeight = this.ctx.canvas.height;
-        // 圆心位置
-        this.x0 = this.canvasWidth / 2 + 100;
-        this.y0 = this.canvasHeight / 2;
-        // 饼图尺寸
-        this.r = 200;
-    }
-
-    // 初始化饼图
-    PieChart.prototype.init = function(data){
-        // 转换弧度
-        this.transformAngle(data);
-        console.log(data);
-
-        this.drawPie(data);
-        this.drawCaption();
-    }
-
-    // 绘制饼图
-    PieChart.prototype.drawPie = function(data){
-        var startAngle = 0,
-            endAngle = 0;
-        
-        for(var i=0;i<data.length-1;i++){
-            endAngle = data[i].radian;
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.x0,this.y0);
-            this.ctx.arc(this.x0,this.y0,this.r,startAngle,endAngle);
-            this.ctx.fillStyle = this.randomColor();
-            this.ctx.closePath();
-            this.ctx.stroke();
-            startAngle = data[i].radian;
+        // 饼图构造函数
+        function PieChart(ctx) {
+            this.ctx = ctx || document.querySelector("canvas");
+            // canvas尺寸
+            this.canvasWidth = this.ctx.canvas.width;
+            this.canvasHeight = this.ctx.canvas.height;
+            // 圆心位置
+            this.x0 = this.canvasWidth / 2 + 100;
+            this.y0 = this.canvasHeight / 2;
+            // 饼图尺寸
+            this.r = 200;
+            // 斜线长度
+            this.line = this.r + 20;
+            // 图注的小方块尺寸
+            this.rectWidth = 40;
+            this.rectHeight = 20;
         }
-    }
 
-    // 弧度转换
-    PieChart.prototype.transformAngle = function(data){
-        var total = 0;
-        // 汇总求基数
-        data.forEach(function(item,index){
-            total += item.nums;
-        });
-        // 添加弧度属性
-        data.forEach(function(item,index){
-            item.radian = item.nums / total * Math.PI * 2;
-        });
-    }
-
-    // 绘制图注
-    PieChart.prototype.drawCaption = function(){}
-
-    // 生成颜色
-    PieChart.prototype.randomColor = function(){
-      var r = Math.floor(Math.random() * 256),
-          g = Math.floor(Math.random() * 256),
-          b = Math.floor(Math.random() * 256);
-
-      return "rgb(" + r + "," + g + "," + b + ")";
-    }
-
-    var data = [
-        {
-            title:'20岁以下',
-            nums:39
-        },
-        {
-            title:'20-25岁',
-            nums:150
-        },
-        {
-            title:'25-30岁',
-            nums:129
-        },
-        {
-            title:'30岁以上',
-            nums:252
+        // 初始化饼图
+        PieChart.prototype.init = function (data) {
+            // 转换弧度
+            this.transformRadian(data);
+            this.drawPie(data);
+            this.drawCaption(data);
         }
-    ];
 
-    new PieChart(ctx).init(data);
-  </script>
+        // 绘制饼图
+        PieChart.prototype.drawPie = function (data) {
+            var startAngle = 0,
+                endAngle = data[0].radian;
+            var i = 0;
+
+            while (i <= data.length - 1) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.x0, this.y0);
+                this.ctx.arc(this.x0, this.y0, this.r, startAngle, endAngle);
+                // 每次随机生成颜色时就存储对应部分的颜色
+                data[i].color = this.randomColor();
+                this.ctx.fillStyle = data[i].color;
+                this.ctx.closePath();
+                this.ctx.fill();
+                startAngle = endAngle;
+                // 判断是否绘制到最后一块，如果是就直接连接到终点
+                if (i == data.length - 1) {
+                    endAngle = Math.PI * 2;
+                    i++;
+                } else {
+                    endAngle = data[++i].radian + startAngle;
+                }
+            }
+        }
+
+        // 弧度转换
+        PieChart.prototype.transformRadian = function (data) {
+            var total = 0;
+            // 汇总求基数
+            data.forEach(function (item, index) {
+                total += item.nums;
+            });
+            // 添加弧度属性
+            data.forEach(function (item, index) {
+                item.radian = item.nums / total * Math.PI * 2;
+            });
+        }
+
+        // 绘制图注
+        PieChart.prototype.drawCaption = function (data) {
+            // 先进行弧度转换
+            this.transformRadian(data);
+            var totalAngle = 0;
+            var textWidth = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                if (i == 0) {
+                    totalAngle = data[i].radian / 2;
+                } else {
+                    totalAngle += data[i - 1].radian / 2 + data[i].radian / 2;
+                }
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.x0, this.y0);
+                this.ctx.lineTo(this.x0 + this.line * Math.cos(totalAngle), this.y0 + this.line * Math.sin(totalAngle));
+                // 添加图注title
+                this.ctx.fillStyle = data[i].color;
+                this.ctx.font = "14px Microsoft Yahei";
+                this.ctx.textBaseline = "bottom";
+                // 判断横线方向以及字体方向
+                if (totalAngle > Math.PI / 2 && totalAngle < Math.PI * 3 / 2) {
+                    this.ctx.textAlign = "right";
+                    this.ctx.lineTo(this.x0 + this.line * Math.cos(totalAngle) - this.ctx.measureText(data[i].title).width, this.y0 + this.line * Math.sin(totalAngle));
+                    this.ctx.fillText(data[i].title, this.x0 + this.line * Math.cos(totalAngle), this.y0 + this.line * Math.sin(totalAngle));
+                } else {
+                    this.ctx.textAlign = "left";
+                    this.ctx.lineTo(this.x0 + this.line * Math.cos(totalAngle) + this.ctx.measureText(data[i].title).width, this.y0 + this.line * Math.sin(totalAngle));
+                    this.ctx.fillText(data[i].title, this.x0 + this.line * Math.cos(totalAngle), this.y0 + this.line * Math.sin(totalAngle));
+                }
+                this.ctx.strokeStyle = data[i].color;
+                this.ctx.stroke();
+            }
+
+            // 绘制左上角小方块图注
+            for(var i=0;i<data.length;i++){
+                this.ctx.beginPath();
+                this.ctx.fillStyle = data[i].color;
+                this.ctx.textBaseline = "top";
+                this.ctx.fillRect(30,30 * (i+1),this.rectWidth,this.rectHeight);
+                this.ctx.fillText(data[i].title,100,30 * (i+1)+4);
+                this.ctx.fill();
+            }
+        }
+
+        // 生成颜色
+        PieChart.prototype.randomColor = function () {
+            var r = Math.floor(Math.random() * 256),
+                g = Math.floor(Math.random() * 256),
+                b = Math.floor(Math.random() * 256);
+
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+
+        var data = [
+            {
+                title: '20岁以下',
+                nums: 39
+            },
+            {
+                title: '20-25岁',
+                nums: 150
+            },
+            {
+                title: '25-30岁',
+                nums: 129
+            },
+            {
+                title: '30-35岁',
+                nums: 252
+            },
+            {
+                title:'35岁以上',
+                nums:78
+            }
+        ];
+
+        new PieChart(ctx).init(data);
+    </script>
 </body>
-
 </html>
