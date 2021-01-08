@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .game{
+            width:560px;
+            margin: 100px auto;
+        }
+        .game h2{
+            text-align: center;
+        }
+        canvas{
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+        <h2>Sokoban Game</h2>
+        <canvas id="canvas" width="560" height="560"></canvas>
+        <div class="op">
+            <p>第<span class="level">1</span>/100关 移动次数: <span class="count">0</span></p>
+            <div class="btn_group">
+                <button onclick="nextLevel(-1)">上一关</button>
+                <button onclick="nextLevel(1)">下一关</button>
+                <button onclick="nextLevel(0)">重玩本关</button>
+                <button onclick="showGameInfo()">游戏说明</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // 推箱子构造函数
+        function Sokoban(){}
+
+        // 游戏初始化
+        Sokoban.prototype.init = function(){}
+
+        // 绘制地图
+        Sokoban.prototype.drawMap = function(){}
+
+        // 图片素材预加载
+        Sokoban.prototype.preload = function(){}
+
+        // 方向控制
+        Sokoban.prototype.direct = function(){}
+
+        // 推箱子
+        Sokoban.prototype.pushBox = function(){}
+    </script>
+</body>
+
+</html>
