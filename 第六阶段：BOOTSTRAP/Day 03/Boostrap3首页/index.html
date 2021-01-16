@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Bootstrap3首页demo</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #bs_header {
+            margin: 0;
+        }
+
+        #bs_header a {
+            color: #563d7c;
+        }
+
+        #bs_header .icon-bar {
+            background-color: #563d7c;
+        }
+
+        #bs_banner {
+            background-color: #563d7c;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        #bs_banner .bs_logo {
+            display: block;
+            width: 144px;
+            height: 144px;
+            font-size: 108px;
+            line-height: 144px;
+            border: 1px solid #fff;
+            border-radius: 20px;
+        }
+
+        #bs_banner .bs_info {
+            margin-top: 5px;
+            line-height: 30px;
+            font-size: 20px;
+        }
+        #bs_banner .bs_download{
+            font-size:20px;
+            padding:15px 30px;
+            color:#fff;
+            border:1px solid #cdbfe3;
+            border-radius:5px;
+            margin:15px 0;
+        } 
+
+        @media screen and (min-width:768px) {
+            #bs_banner {
+                padding: 80px 0;
+            }
+
+            #bs_banner .bs_info {
+                font-size: 30px;
+                line-height: 40px;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            #bs_banner .bs_info{
+                width:80%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {}
+    </style>
+</head>
+
+<body>
+    <!-- 导航条 -->
+    <nav class="navbar" id="bs_header">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bootstrap</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">起步 <span class="sr-only">(start)</span></a></li>
+                    <li><a href="#">全局CSS样式</a></li>
+                    <li><a href="#">组件</a></li>
+                    <li><a href="#">Javascript插件</a></li>
+                    <li><a href="#">定制</a></li>
+                    <li><a href="#">网站实例</a></li>
+                    <li><a href="#">Jekyll</a></li>
+                </ul>
+                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Bootstrap中文网</a></p>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- 巨幕 -->
+    <div id="bs_banner">
+        <div class="container text-center">
+            <span class="bs_logo center-block">B</span>
+            <h2 class="bs_info center-block">Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。</h2>
+            <p><a href="#" role="button" class="bs_download">下载Bootstrap</a></p>
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
