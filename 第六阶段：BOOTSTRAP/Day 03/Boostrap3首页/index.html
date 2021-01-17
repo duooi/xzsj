@@ -25,7 +25,7 @@
         }
 
         #bs_banner {
-            background-color: #563d7c;
+            background-color: #6f5499;
             color: #fff;
             padding: 30px 0;
         }
@@ -41,36 +41,152 @@
         }
 
         #bs_banner .bs_info {
-            margin-top: 5px;
+            margin: 30px auto;
             line-height: 30px;
             font-size: 20px;
         }
-        #bs_banner .bs_download{
-            font-size:20px;
-            padding:15px 30px;
-            color:#fff;
-            border:1px solid #cdbfe3;
-            border-radius:5px;
-            margin:15px 0;
-        } 
 
+        #bs_banner .bs_download {
+            font-size: 20px;
+            padding: 15px 30px;
+            color: #fff;
+            border: 1px solid #cdbfe3;
+            border-radius: 5px;
+        }
+
+        #bs_banner .bs_version,
+        #bs_banner .bs_lesson a {
+            font-size: 16px;
+            color: #9783b9;
+            margin: 5px 0;
+        }
+
+        #bs_banner hr {
+            display: block;
+            width: 100%;
+            border-top: 1px solid #563d7c;
+            margin: 30px 0 20px;
+        }
+
+        #bs_banner .bs_pylesson a {
+            font-size: 20px;
+            background-color: #fff;
+            color: #563d7c;
+            padding: 10px 30px;
+        }
+
+        #bs_banner .bs_pylesson a:hover {
+            background-color: #6f5499;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        #bs_banner .bs_lesson a:hover {
+            text-decoration: none;
+            color: #dcd2ef;
+        }
+
+        #bs_properties .container {
+            padding: 40px 0;
+        }
+
+        #bs_properties .prop_title {
+            font-size: 30px;
+        }
+
+        #bs_properties .prop_slogan {
+            font-size: 16px;
+        }
+
+        #bs_properties .bs_prop {
+            margin-top: 50px;
+        }
+
+        #bs_properties .bs_prop .media-heading {
+            font-size: 24px;
+            margin: 20px 0 10px;
+        }
+
+        #bs_properties .bs_prop .media-body p {
+            font-size: 16px;
+            line-height: 25px;
+        }
+
+        #bs_properties .s2 {
+            margin-top: 50px;
+        }
+
+        #bs_properties hr {
+            margin: 0;
+        }
+
+        #bs_properties .bs_check {
+            background-color: transparent;
+            color: #563d7c;
+            border-color: #563d7c;
+            margin: 5px 0;
+        }
+
+        #bs_footer {
+            background-color: #2a2730;
+            padding: 50px 0;
+        }
+
+        #bs_footer a {
+            color: #fff;
+        }
+
+        #bs_footer .list {
+            text-align: center;
+        }
+
+        #bs_footer p {
+            color: #99979c;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* 手机设备 */
         @media screen and (min-width:768px) {
             #bs_banner {
-                padding: 80px 0;
+                padding: 80px 0 60px;
             }
 
             #bs_banner .bs_info {
                 font-size: 30px;
                 line-height: 40px;
             }
+
+            #bs_properties .container {
+                padding: 80px 0;
+            }
+
+            #bs_properties .prop_title {
+                font-size: 40px;
+            }
+
+            #bs_properties .prop_slogan {
+                font-size: 21px;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #bs_footer .list,
+            #bs_footer p {
+                text-align: left;
+            }
+
         }
 
+        /* 平板设备 */
         @media screen and (min-width:992px) {
-            #bs_banner .bs_info{
-                width:80%;
+            #bs_banner .bs_info {
+                width: 80%;
             }
         }
 
+        /* 显示器设备 */
         @media screen and (min-width: 1200px) {}
     </style>
 </head>
@@ -111,8 +227,82 @@
     <div id="bs_banner">
         <div class="container text-center">
             <span class="bs_logo center-block">B</span>
-            <h2 class="bs_info center-block">Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。</h2>
-            <p><a href="#" role="button" class="bs_download">下载Bootstrap</a></p>
+            <p class="bs_info center-block">Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。</p>
+            <p><a href="#" role="button" class="btn bs_download">下载Bootstrap</a></p>
+            <p class="bs_version">当前版本： v3.3.7 | 文档更新于：2020-11-17</p>
+            <hr>
+            <p class="bs_pylesson"><a href="#" class="btn btn-lg btn-primary">限时￥0.99 Python集训营， 93节名师视频+2本纸质教材</a></p>
+            <p class="bs_lesson"><a href="#">3天名师直播，作业合格包邮赠2本Python教材</a></p>
+        </div>
+    </div>
+
+    <!-- 特性 -->
+    <div id="bs_properties">
+        <div class="container text-center">
+            <h3 class="prop_title">为所有开发者、所有应用场景而设计。</h3>
+            <p class="prop_slogan s1">Bootstrap 让前端开发更快速、简单。所有开发者都能快速上手、所有设备都可以适配、所有项目都适用。</p>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="bs_prop media">
+                        <a href="#">
+                            <img class="media-object img-responsive" src="images/sass-less.png" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">预处理脚本</h4>
+                            <p>虽然可以直接使用 Bootstrap 提供的 CSS 样式表，不要忘记 Bootstrap 的源码是基于最流行的 CSS 预处理脚本 - Less 和 Sass
+                                开发的。你可以采用预编译的 CSS 文件快速开发，也可以从源码定制自己需要的样式。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="bs_prop media">
+                        <a href="#">
+                            <img class="media-object img-responsive" src="images/devices.png" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">一个框架、多种设备</h4>
+                            <p>你的网站和应用能在 Bootstrap 的帮助下通过同一份代码快速、有效适配手机、平板、PC 设备，这一切都是 CSS 媒体查询（Media Query）的功劳。</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="bs_prop media">
+                        <a href="#">
+                            <img class="media-object img-responsive" src="images/components.png" alt="...">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">特性齐全</h4>
+                            <p>Bootstrap 提供了全面、美观的文档。你能在这里找到关于 HTML 元素、HTML 和 CSS 组件、jQuery 插件方面的所有详细文档。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <p class="prop_slogan s2">Bootstrap 是完全开源的。它的代码托管、开发、维护都依赖 GitHub 平台。</p>
+            <a href="#" class="btn btn-lg btn-primary bs_check">查看GitHub项目主页</a>
+        </div>
+        <hr>
+        <div class="container text-center">
+            <h3 class="prop_title">基于 Bootstrap 构建的网站</h3>
+            <p class="prop_slogan s1">全球数以百万计的网站都是基于 Bootstrap 构建的。你可以先参观一下我们提供的实例精选或者看一看我们粉丝的网站吧。</p>
+            <p class="prop_slogan s2">我们在“优站精选”里展示了许多精美的 Bootstrap 网站。</p>
+            <a href="#" class="btn btn-lg btn-primary bs_check">逛一逛“优站精选”</a>
+        </div>
+    </div>
+
+    <!-- 页尾 -->
+    <div id="bs_footer">
+        <div class="container">
+            <ul class="list list-inline">
+                <li><a href="#">GitHub仓库</a></li>
+                <li><a href="#">实例</a></li>
+                <li><a href="#">优站精选</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+            <p>Designed and built with all the love in the world by <a href="#">@mdo</a> and <a href="#">@fat</a>.
+                Maintained by the <a href="#">core team</a> with the help of <a href="#">our contributors</a>.</p>
+            <p>本项目源码受 <a href="#">MIT</a>开源协议保护，文档受 <a href="#">CC BY 3.0</a> 开源协议保护。</p>
         </div>
     </div>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
