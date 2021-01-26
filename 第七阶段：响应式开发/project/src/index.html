@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 始终告知IE浏览器用最新的版本解析 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <link rel="stylesheet" href="../src/css/normalize.css">
+  <link rel="stylesheet" href="../src/css/animate.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <header id="pg_head">
+    <a href="javascript:;" class="head_brand">涌铧投资</a>
+    <a href="#" class="head_lang">English</a>
+    <nav class="head_nav">
+      <span class="head_menu btn_expand"></span>  
+      <ul>
+        <li class="active"><a href="#">首页</a></li>
+        <li><a href="#">关于</a></li>
+        <li><a href="#">基金</a></li>
+        <li><a href="#">案例</a></li>
+        <li><a href="#">联系</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="idx_pg_body">
+    <section class="part body_fir">
+      <div class="text" style="overflow: hidden;">
+        <h3>携手之情 涌金相报</h3>
+        <h5><span>涌铧投资始终专注于私募股权投资领域，</span><span>一贯秉承发现和提升中国企业内在价值。</span><span class="block">携手长期合作伙伴，共享创造财富的快乐！</span></h5>
+      </div>
+      <div class="direct">
+        <p>点击下拉，查看部分投资企业</p>
+        <span class="btn_down animated wow bounce" data-wow-iteration="infinite" data-wow-duration="0.5s"></span>
+      </div>
+    </section>
+    <section class="part body_sec">
+      <div class="text">
+        <h3>泉峰汽车</h3>
+        <h5>汽车关键零部件一站式供应商</h5>
+      </div>
+      <img src="./images/quanf.png" class="pic" alt="">
+    </section>
+    <section class="part body_thi">
+      <div class="text">
+        <h3>维力医疗</h3>
+        <h5>全球医用导管主要供应商</h5>
+      </div>
+      <img src="./images/center_img3.png" class="pic" alt="">
+    </section>
+    <section class="part body_fur">
+      <div class="text">
+        <h3>雪榕生物</h3>
+        <h5>科技还原生态之美</h5>
+      </div>
+      <img src="./images/center_img2.png" class="pic" alt="">
+    </section>
+    <section class="his_data">
+      <h3>打造精品基金 坚守价值投资 追求绝对收益</h3>
+      <ul class="data_cont">
+        <li>
+            <span class="data">
+              <span class="num">20</span>
+              <i>+</i>
+              年
+            </span>
+            <span class="title">企业历史</span>
+        </li>
+        <li>
+          <span class="data">
+            <span class="num">180</span>
+            <i>+</i>
+            家
+          </span>
+          <span class="title">投资的优秀企业</span>
+        </li>
+        <li>
+          <span class="data">
+            <span class="num">60</span>
+            <i>+</i>
+            家
+          </span>
+          <span class="title">投资企业成功上市</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+  <ul class="pg_scroll">
+    <li data-page="1" class="active"></li>
+    <li data-page="2"></li>
+    <li data-page="3"></li>
+    <li data-page="4"></li>
+    <li data-page="5"></li>
+  </ul>
+  <footer id="pg_footer">
+    <a href="#" class="foot_brand">涌铧投资</a>
+    <div class="foot-contact">
+      <ul>
+        <li>
+          <span class="company">公司名称：上海涌铧投资管理有限公司</span>
+        </li>
+        <li>
+          <span class="email">邮箱地址：Yonghua@yonghuacapital.com.cn</span>
+        </li>
+      </ul>
+    </div>
+    <div class="coop">
+      <a href="#" class="coop_yjjt">
+        <img src="./images/foot-logo1.png" alt="">
+      </a>
+      <a href="#" class="coop_gjzq">
+        <img src="./images/foot-logo2.png" alt="">
+      </a>
+      <a href="#" class="coop_ynxt">
+        <img src="./images/foot-logo3.png" alt="">
+      </a>
+    </div>
+    <p>Copyright 1994-2017 YongJin group, Inc. All rights reserved.<a href="#">沪ICP备18018332号-3</a></p>
+  </footer>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="./js/index.js"></script>
+<script>
+  $(function(){
+    var $sec = $(".part");
+
+    // 适应窗口尺寸改变
+    function adaptScreen(){
+      $sec.width($(this).width());
+      $sec.height($(this).height());
+    }
+
+    adaptScreen();
+
+    $(window).on("resize orientation",function(){
+      adaptScreen();
+    });
+
+    // 绑定顶部导航下拉菜单
+    $(".head_menu").click(function(){
+      if($(this).hasClass("btn_expand")){
+        $(".head_nav>ul").css("top",$("#pg_head").height()).slideDown(300);
+        $(this).removeClass("btn_expand").addClass("btn_closed");
+        $(".head_lang").show(10);
+      }else if($(this).hasClass("btn_closed")){
+        $(".head_nav>ul").slideUp(300);
+        $(this).removeClass("btn_closed").addClass("btn_expand");
+        $(".head_lang").hide();
+      }
+    });
+  });
+</script>
+</html>

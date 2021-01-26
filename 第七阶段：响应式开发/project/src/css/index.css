@@ -1,0 +1,285 @@
+section{
+    position: relative;
+} 
+.block{
+  display: block;
+}
+.part .pic{
+  display: none;
+}
+
+/* 第一屏 */
+section .text{
+  position: absolute;
+  top:35%;
+  display: block;
+  width:100%;
+  text-align: center;
+}
+section .text h3{
+  font-size:5.6rem;
+  font-weight: 400;
+  color:rgb(0, 85, 167);
+  margin:0;
+}
+section .text h5{
+  font-weight: 400;
+  font-size:2.2rem;
+  color:rgb(0, 85, 167);
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+section .text h5 span{
+  margin:1rem 0;
+}
+.body_fir .direct{
+  position: absolute;
+  bottom:5%;
+  left: 50%;
+  transform:translateX(-50%);
+  color:#fff;
+  text-align:center;
+}
+.body_fir .direct p{
+  font-size:1.5rem;
+}
+.body_fir .btn_down{
+  display: block;
+  width:3.4rem;
+  height:6.6rem;
+  margin:4rem auto 0;
+  background:url(../images/scroll1.png) no-repeat center 0;  
+  background-size:contain;
+  cursor: pointer;
+}
+.bounce{
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+/* 第二屏 */
+.body_sec{
+  overflow: hidden;
+}
+.body_sec .text{
+  top:26%;
+}
+.body_thi .text{
+  top:20%;  
+}
+.body_sec .text h3,
+.body_thi .text h3,
+.body_fur .text h3{
+  font-weight: 700;
+}
+.body_sec .pic{
+  position: absolute;
+  width:68rem;
+  left: 50%;
+  top:50%;
+  margin-left: -34rem;
+}
+
+/* 第三屏 */
+.body_thi .text h3,
+.body_thi .text h5{
+  color:#fff;
+}
+.body_thi .pic{
+  position: absolute;
+  width:40rem;
+  left: 50%;
+  top:40%;
+  margin-left: -20rem;
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+}
+
+/* 第四屏 */
+.body_fur .text{
+  top:68%;
+}
+.body_fur .text h3,
+.body_fur .text h5{
+  color:#c95800;
+}
+.body_fur .pic{
+  position: absolute;
+  width:44rem;
+  left: 50%;
+  top:20%;
+  margin-left: -22rem;
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+}
+
+/* 第五部分 */
+.his_data{
+  padding:6rem 0;
+}
+.his_data h3{
+  width:90%;
+  font-size:3.6rem;
+  color:#bf9d5b;
+  text-align: center;
+  font-weight: 400;
+  margin:0 auto 4rem;
+}
+.his_data .data_cont{
+  width:80%;
+  margin:6rem auto 0;
+  overflow: hidden;
+}
+.his_data .data_cont li{
+  width:33.3333333%;
+  float: left;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.his_data .data_cont li + li{
+  border-left: 2px solid #dbdcdc;
+}
+.data_cont .data{
+  font-size:1.8rem;
+}
+.data_cont .title{
+  font-size:1.8rem;
+  display: block;
+  margin-top: 1rem;
+}
+.data_cont .data .num{
+  font-size:7.2rem;
+}
+.data_cont i{
+  position: absolute;
+  font-size:5.2rem;
+  line-height: 3rem;
+}
+@media only screen and (max-width:480px){
+  section .text h3{
+    font-size:3.2rem;
+  }
+  section .text h5{
+    font-size:1.6rem;
+  }
+  section .text h5 span{
+    display: block;
+  }
+  .body_fir .btn_down{  
+    width:2.8rem;
+    height:4.6rem;
+  }
+  .body_fir .direct p{
+    display: none;
+  }
+  .body_sec .text{
+    top:30%;
+  }
+  .body_sec .pic{
+    width:80%;
+    margin-left: -40%;
+    bottom:36%;
+  }
+  .body_thi .pic{
+    width:70%;
+    margin-left: -35%;
+  }
+  .body_fur .pic{
+    width:70%;
+    margin-left: -35%;
+  }
+  .body_fur .text{
+    top:60%;
+  }
+  .his_data h3{
+    font-size:2rem;
+  }
+  .his_data ul.data_cont{
+    font-size:0;
+    text-align: center;
+  }
+  .his_data ul.data_cont li{
+    width:50%;
+    float: none;
+    display: inline-block;
+    border-left: none;
+    margin:2rem 0;
+  }
+  .his_data .data{
+    font-size:1.4rem;
+  }
+  .his_data .data .num{
+    font-size: 5.2rem;
+  }
+  .his_data .data i{
+    font-size:3.2rem;
+  }
+  .his_data .title{
+    font-size:1.4rem;
+  }
+}
+@media only screen and (min-width:481px) and (max-width:768px){  
+  .body_fir .btn_down{  
+    width:3.2rem;
+    height:5.6rem;
+  }
+  .body_fir .direct p{
+    display: none;
+  }
+  section .text h3{
+    font-size:4rem;
+  }
+  section .text h5 span{
+    display: block;
+    font-size:1.8rem;
+  }
+  .body_sec .pic{
+    width:70%;
+    margin-left: -35%;
+  }
+  .body_fur .pic{
+    width:36rem;
+    margin-left: -18rem;
+  }
+  .his_data h3{
+    font-size:2.4rem;
+  }
+  .his_data .data{
+    font-size:1.4rem;
+  }
+  .his_data .data .num{
+    font-size: 5.2rem;
+  }
+  .his_data .data i{
+    font-size:3.2rem;
+  }
+  .his_data .title{
+    font-size:1.4rem;
+  }
+}
+@media only screen and (min-width:769px) and (max-width:1200px){
+  section .text h3{
+    font-size:4.4rem;
+  }
+  section .text h5 span{
+    font-size:1.9rem;
+  }
+  .his_data h3{
+    font-size:3rem;
+  }
+  .his_data .data{
+    font-size:1.8rem;
+  }
+  .his_data .data .num{
+    font-size: 5.6rem;
+  }
+  .his_data .data i{
+    font-size:3.8rem;
+  }
+  .his_data .title{
+    font-size:1.6rem;
+  }
+}

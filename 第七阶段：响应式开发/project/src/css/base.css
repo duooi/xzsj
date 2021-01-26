@@ -1,0 +1,291 @@
+/* 首页各page背景色 */
+#idx_pg_body .body_fir{
+  height:600px;
+  background:url(../images/header-bg1.jpg) no-repeat center bottom;
+  background-size: cover;
+}
+#idx_pg_body .body_sec{
+  background-color:#bbe9ff;
+}
+#idx_pg_body .body_thi{
+  background-color:#2EBBB9;
+}
+#idx_pg_body .body_fur{
+  background-color:#EDEDF4;
+}
+
+/* 公共配置 */
+html{
+  font-size:62.5%;
+  font-family: "Microsoft yahei",STXihei;
+}
+html,body,ul,li,p{
+  margin:0;
+  padding:0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration:none;
+}
+
+/* 顶部公共导航 */
+#pg_head{
+  height: 9rem;
+  padding:0 2rem;
+  font-size:1.7rem;
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+#pg_head .head_brand{
+  float: left;
+  width:18rem;
+  height:5rem;
+  text-indent: -9999px;
+  overflow: hidden;
+  background:url(../images/logo3.png) no-repeat 0 0;
+  background-size:contain;
+  margin:2rem 0 0 2rem;
+}
+#pg_head .head_nav{
+  float: right;
+}
+#pg_head .head_nav ul li{
+  float: left;
+  padding:3.6rem 2rem;
+}
+#pg_head .head_nav a{
+  color:#fff;
+}
+#pg_head .head_lang{
+  float:right;
+  margin:3rem 2rem;
+  color:#fff;
+  border-radius:5px;
+  background-color:#bf9d5b;
+  padding:0.6rem 1.2rem;
+}
+#pg_head.light{
+  background-color:#fff;
+}
+#pg_head.light .head_brand{
+  background:url(../images/logo.png) no-repeat 0 0;
+  background-size: contain;
+}
+#pg_head.light .head_nav a{
+  color:#333;
+}
+
+@media only screen and (max-width:750px){
+  #pg_head{
+    height:8rem;
+    font-size:1.6rem;
+  }
+  #pg_head .head_brand{
+    width:14rem;
+    height:4rem;
+    margin:2.2rem 0 0 0;
+    background:url(../images/logo2.png) no-repeat 0 0;
+    background-size:contain;
+  }
+  #pg_head .head_nav{
+    float: none;
+    position: absolute;
+    width:100%;
+    top:8rem;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color:rgba(255, 255, 255, 0.8);
+  }
+  #pg_head .head_nav ul{
+    display:none;
+  }
+  #pg_head .head_nav ul li{
+    float: none;
+    padding:1.6rem 2rem;
+  }
+  #pg_head .head_nav li a{
+    display: block;
+    width:100%;
+    color:#000;
+  }
+  #pg_head .head_nav li.active a{
+    color:#bf9d5b;
+  }
+  #pg_head .head_lang{
+    position: absolute;
+    top:9rem;
+    right:2rem;
+    z-index: 99999;
+    margin:0;
+    display: none;
+  }
+  #pg_head .btn_expand{
+    position: absolute;
+    width:3rem;
+    right: 2rem;
+    top: -5.5rem;
+    border-bottom:2px solid #fff;
+  }
+  #pg_head .btn_expand:before,
+  #pg_head .btn_expand:after{
+    content:"";
+    display: block;
+    width: 100%;
+    height:0;
+    margin-bottom: 1rem;
+    border-top:2px solid #fff;
+  }
+  #pg_head .btn_closed{
+    position: absolute;
+    width:3rem;
+    height:3rem;
+    right: 2rem;
+    top:-5.5rem;
+  }
+  #pg_head .btn_closed:before,
+  #pg_head .btn_closed:after{
+    position: absolute;
+    content:"";
+    display: block;
+    width: 100%;
+    top:1.3rem;
+    height:2px;
+    background-color:#fff;
+  }
+  #pg_head .btn_closed:before{
+    transform: rotate(45deg);
+  }
+  #pg_head .btn_closed::after{
+    transform: rotate(-45deg);
+  }
+  #pg_head.light .btn_expand{
+    border-bottom-color:#bf9d5b;
+  }
+  #pg_head.light .btn_expand:before,
+  #pg_head.light .btn_expand:after{
+    border-top-color:#bf9d5b;
+  }
+  #pg_head.light .btn_closed:before,
+  #pg_head.light .btn_closed:after{
+    background-color:#bf9d5b;
+  }
+}
+
+/* 底部公共导航 */
+#pg_footer{
+  background-color: #0055a7;
+  color:#fff;
+  padding:3rem 0 0;
+}
+#pg_footer .foot_brand{
+  display: block;
+  width:18rem;
+  height:4.8rem;
+  background:url(../images/logo2.png) no-repeat 0 0;
+  background-size:contain;
+  margin:0 auto;
+  text-indent: -9999px;
+}
+#pg_footer .foot-contact{
+    border-bottom:1px solid rgba(191,157,91,0.6);
+    padding:1rem 0;
+    text-align: center;
+    font-size:1.4rem;
+    color:rgba(255,255,255,0.8);
+}
+.foot-contact li{
+  display: inline-block;
+  margin:1rem 0;
+}
+#pg_footer .foot-contact span{
+  position: relative;
+  display: inline-block;
+  padding-left: 2.4rem;
+  margin:0 3rem;
+}
+@media only screen and (max-width:700px){
+  #pg_footer .foot-contact li{
+    display: block;
+  }
+}
+
+#pg_footer .foot-contact span::before{
+  content:"";
+  position: absolute;
+  width:1.8rem;
+  height:1.8rem;
+  top:-0.2rem;
+  left: 0;
+}
+.foot-contact .company:before{
+  background:url(../images/icon-home.png) no-repeat 0 0;
+  background-size:cover;
+}
+.foot-contact .email:before{
+  background:url(../images/icon-mail.png) no-repeat 0 0;
+  background-size:cover;
+}
+#pg_footer .coop{
+  text-align: center;
+  vertical-align: middle;
+  margin:2rem 0;
+}
+#pg_footer .coop a{
+  display: inline-block;
+  margin:0 1rem;
+}
+#pg_footer p{
+  background-color:#fff;
+  color:#bf9d5b;
+  padding:1.2rem 0;
+  text-align:center;
+  font-size:1.2rem;
+}
+#pg_footer p a{
+  color:#000;
+}
+@media only screen and (max-width:480px){
+  #pg_footer p a{
+    display: block;
+    margin:0.5rem 0;
+  }
+  #pg_footer .foot-contact span{
+    margin:0;
+  }
+}
+@media only screen and (min-width:1001px){
+  #pg_head .head_nav ul li{
+    padding:3.6rem 3.2rem;
+  }
+}
+
+/* 侧边控制 */
+.pg_scroll{
+  position: fixed;
+  right:1.4rem;
+  top:50%;
+  -webkit-transform: translateY(-50%);
+  transform:translateY(-50%);
+}
+.pg_scroll li{
+  cursor: pointer;
+  width: 1rem;
+  height:1rem;
+  border-radius: 50%;
+  border:2px solid #fff;
+  background:transparent;
+  box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+}
+.pg_scroll li + li{
+  margin-top: 1rem;
+}
+.pg_scroll li.active{
+  background:#bf9d5b;
+  border-color:#bf9d5b;
+}
